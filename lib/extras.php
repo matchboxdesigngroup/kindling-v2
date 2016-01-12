@@ -68,32 +68,32 @@ add_action( 'gform_field_css_class', 'mdg_gforms_input_class', 10, 3 );
  *
  * @return  object          The filtered query.
  */
-if ( ! function_exists( 'mdg_remove_hicpo_pre_get_posts_filter' ) ) {
-function mdg_remove_hicpo_pre_get_posts_filter( $query ) {
-  global $wp_filter;
+// if ( ! function_exists( 'mdg_remove_hicpo_pre_get_posts_filter' ) ) {
+// function mdg_remove_hicpo_pre_get_posts_filter( $query ) {
+//   global $wp_filter;
 
-  if ( ! isset( $wp_filter['pre_get_posts'] ) or is_admin() ) {
-    return $query;
-  } // if()
+//   if ( ! isset( $wp_filter['pre_get_posts'] ) or is_admin() ) {
+//     return $query;
+//   } // if()
 
-  $pre_get_posts_filters = $wp_filter['pre_get_posts'];
+//   $pre_get_posts_filters = $wp_filter['pre_get_posts'];
 
-  foreach ( $pre_get_posts_filters as $filters_key => $filters ) {
-    foreach ( $filters as $filter_key => $filter ) {
-      $correct_filter = ( strpos( $filter_key, 'hicpo_pre_get_posts' ) !== false );
-      $has_function   = isset( $filter['function'] );
+//   foreach ( $pre_get_posts_filters as $filters_key => $filters ) {
+//     foreach ( $filters as $filter_key => $filter ) {
+//       $correct_filter = ( strpos( $filter_key, 'hicpo_pre_get_posts' ) !== false );
+//       $has_function   = isset( $filter['function'] );
 
-      if ( $correct_filter and $has_function ) {
-        remove_filter( 'pre_get_posts', $filter['function'], $filters_key );
-      } // if()
-    } // foreach()
-  } // foreach()
+//       if ( $correct_filter and $has_function ) {
+//         remove_filter( 'pre_get_posts', $filter['function'], $filters_key );
+//       } // if()
+//     } // foreach()
+//   } // foreach()
 
 
-  return $query;
-} // mdg_remove_hicpo_pre_get_posts_filter()
-add_filter( 'pre_get_posts', 'mdg_remove_hicpo_pre_get_posts_filter', 0 );
-} // if()
+//   return $query;
+// } // mdg_remove_hicpo_pre_get_posts_filter()
+// add_filter( 'pre_get_posts', 'mdg_remove_hicpo_pre_get_posts_filter', 0 );
+// } // if()
 
 
 
