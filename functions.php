@@ -17,8 +17,13 @@ $sage_includes = [
   'lib/wrapper.php',    // Theme wrapper class
   'lib/customizer.php', // Theme customizer
   'lib/navwalker.php',  // Bootstap Nav Walker
-  'lib/shortcodes.php',  // Shortcodes
-  'lib/debug.php'       // Debug
+  'lib/shortcodes.php', // Shortcodes
+  'lib/debug.php',      // Debug
+  
+  'lib/post-types/type-base.php',   // Type Base
+  'lib/post-types/type-page.php',   // Post Type: Page
+  'lib/post-types/type-post.php',   // Post Type: Post
+  'lib/post-types/type-stub.php'    // Post Type: Stub
 ];
 
 foreach ($sage_includes as $file) {
