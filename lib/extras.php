@@ -44,15 +44,12 @@ add_filter('excerpt_more', __NAMESPACE__ . '\\excerpt_more');
  *
  * @return  string            The filtered CSS classes separated by empty spaces (i.e. "gfield custom_class").
  */
-if ( ! function_exists( 'mdg_gforms_input_class' ) ) {
-function mdg_gforms_input_class( $classes, $field, $form ){
+add_action( 'gform_field_css_class', function( $classes, $field, $form ){
   $input_slug = sanitize_title( $field['label'] );
   $classes   .= " gfield-{$input_slug}";
 
   return $classes;
-} // mdg_gforms_input_class
-add_action( 'gform_field_css_class', 'mdg_gforms_input_class', 10, 3 );
-} // if()
+}, 10, 3 );
 
 /**
  * Handles removing the hicpo_pre_get_posts filter.
