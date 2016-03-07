@@ -17,7 +17,7 @@
 function mdg_enable_jetpack_development_mode( $enabled ) {
 	global  $mdg_utilities;
 
-	if ( $mdg_utilities->is_localhost() ) {
+	if ( mdg_is_localhost() ) {
 		return true;
 	} // if()
 
@@ -42,7 +42,7 @@ if ( ! function_exists( 'pp' ) ) {
 	function pp( $value ) {
 		global $mdg_utilities;
 
-		$is_localhost = $mdg_utilities->is_localhost();
+		$is_localhost = mdg_is_localhost();
 		if ( ! $is_localhost ) return;
 		echo '<pre>';
 		if ( gettype( $value ) === 'boolean' ) {

@@ -34,44 +34,6 @@ add_filter('excerpt_more', __NAMESPACE__ . '\\excerpt_more');
 
 
 /**
- * Filters Gravity Forms CSS classes for a field.
- *
- * @link    http://www.gravityhelp.com/documentation/page/Gform_field_css_class
- *
- * @param   string  $classes  The CSS classes to be filtered, separated by empty spaces (i.e. "gfield custom_class").
- * @param   array   $field    Current field.
- * @param   array   $form     Current form.
- *
- * @return  string            The filtered CSS classes separated by empty spaces (i.e. "gfield custom_class").
- */
-add_action( 'gform_field_css_class', function( $classes, $field, $form ){
-  // Add the field label class.
-  $label       = ( isset( $field['label'] ) ) ? $field['label'] : '';
-  $admin_label = ( isset( $field['adminLabel'] ) ) ? $field['adminLabel'] : '';
-  $input_slug  = ( '' === $admin_label ) ? $label : $admin_label;
-  $input_slug  = sanitize_title( $input_slug );
-  $classes    .= " gfield-{$input_slug}";
-
-  // Add the field type class.
-  $type     = ( isset( $field['type'] ) ) ? $field['type'] : '';
-  $type     = sanitize_title( $type );
-  $classes .= " gfield-type-{$type}";
-
-  // Add placeholder classes.
-  $has_placeholder = ( isset( $field['placeholder'] ) and '' !== $field['placeholder'] );
-  if ( isset( $field['inputs'] ) ) {
-    foreach ( $field['inputs'] as $input ) {
-      if ( isset( $input['placeholder'] ) and '' !== $input['placeholder'] ) {
-        $has_placeholder = true;
-
-        break;
-      } // if()
-    } // foreach()
-  } // if()
-  $classes .= ( $has_placeholder ) ? ' gfield-placeholder' : '';
-
-  return $classes;
-}, 10, 3 );
 
 /**
  * Handles removing the hicpo_pre_get_posts filter.
@@ -120,7 +82,7 @@ add_filter( 'pre_get_posts', function( $query ) {
  *
  * @return  boolean               True if the current host matches any of the supplied hosts, false if not.
  */
-function check_hosts( $http_hosts = array() ) {
+function mdg_check_hosts( $http_hosts = array() ) {
   $http_host = $_SERVER['HTTP_HOST'];
 
   // Check the possible HTTP hosts against the current HTTP host.
@@ -136,7 +98,7 @@ function check_hosts( $http_hosts = array() ) {
   } // foreach
 
   return false;
-} // check_hosts()
+} // mdg_check_hosts()
 
 
 
@@ -145,7 +107,7 @@ function check_hosts( $http_hosts = array() ) {
  * Default possible HTTP hosts http://localhost, 127.0.0.1, 10.0.0.2, http://*.dev.
  *
  * <code>
- * if ( $mdg_utilities->is_localhost() ) {
+ * if ( mdg_is_localhost() ) {
  *  // Do something localhost specific...
  * } // if()
  * </code
@@ -154,7 +116,7 @@ function check_hosts( $http_hosts = array() ) {
  *
  * @return  boolean  If the current HTTP host is localhost.
  */
-function is_localhost() {
+function mdg_is_localhost() {
   // Default possible HTTP hosts URLs/IP addresses
   $http_hosts = array(
     'localhost',
@@ -171,10 +133,10 @@ function is_localhost() {
    *
    * @param  hosts  The possible HTTP hosts to check against.
    */
-  $http_hosts = apply_filters( 'mdg_is_localhost_http_hosts', $http_hosts );
+  $http_hosts = apply_filters( 'mdg_mdg_is_localhost_http_hosts', $http_hosts );
 
-  return $this->check_hosts( $http_hosts );
-} // is_localhost()
+  return mdg_check_hosts( $http_hosts );
+} // mdg_is_localhost()
 
 
 
@@ -185,7 +147,7 @@ function is_localhost() {
  *
  * @return  boolean  If the current host is a staging site.
  */
-function is_staging() {
+function mdg_is_staging() {
   $http_hosts = array(
     '.staging.',
     'dev.',
@@ -199,7 +161,7 @@ function is_staging() {
    *
    * @param  hosts  The possible HTTP hosts to check against.
    */
-  $http_hosts = apply_filters( 'mdg_is_staging_http_hosts', $http_hosts );
+  $http_hosts = apply_filters( 'mdg_mdg_is_staging_http_hosts', $http_hosts );
 
-  return check_hosts( $http_hosts );
-} // is_staging()
+  return mdg_check_hosts( $http_hosts );
+} // mdg_is_staging()
