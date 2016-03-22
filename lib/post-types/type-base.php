@@ -21,8 +21,8 @@
  *
  * @example lib/post-types/type-stub.php
  */
-class MDG_Type_Base {
 
+abstract class MDG_Type_Base {
 	/**
 	 * REQUIRED slug for post type.
 	 *
