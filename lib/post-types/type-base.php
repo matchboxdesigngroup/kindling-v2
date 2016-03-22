@@ -24,7 +24,7 @@
 
 abstract class MDG_Type_Base {
 	/**
-	 * REQUIRED slug for post type.
+	 * Slug for post type.
 	 *
 	 * @var  string
 	 */
@@ -33,7 +33,7 @@ abstract class MDG_Type_Base {
 
 
 	/**
-	 * REQUIRED title of post type.
+	 * Title of post type.
 	 *
 	 * @var  string
 	 */
@@ -42,7 +42,7 @@ abstract class MDG_Type_Base {
 
 
 	/**
-	 * REQUIRED singular title.
+	 * Singular title.
 	 *
 	 * @var  string
 	 */
@@ -178,9 +178,17 @@ abstract class MDG_Type_Base {
 
 
 	/**
-	 * Class constructor, takes care of all the setup needed
+	 * Class constructor, takes care of all the setup needed.
+	 *
+	 * @param string $post_type        The post type id.
+	 * @param string $post_type_title  The post type plural title.
+	 * @param string $post_type_single The post type singular title.
 	 */
-	public function __construct() {
+	public function __construct( $post_type, $post_type_title, $post_type_single ) {
+		$this->post_type = $post_type;
+		$this->post_type_title = $post_type_title;
+		$this->post_type_single = $post_type_single;
+
 		$this->_set_parameters();
 		$this->_type_base_add_actions();
 		$this->init();

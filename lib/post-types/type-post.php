@@ -29,28 +29,7 @@ class MDG_Type_Post extends MDG_Type_Base {
 	 * Class constructor, handles instantiation functionality for the class
 	 */
 	function __construct() {
-		/**
-		 * REQUIRED slug for post type.
-		 *
-		 * @var string
-		 */
-		$this->post_type = 'post';
-
-		/**
-		 * REQUIRED title of post type.
-		 *
-		 * @var string
-		 */
-		$this->post_type_title = 'Posts';
-
-		/**
-		 * REQUIRED singular title.
-		 *
-		 * @var string
-		 */
-		$this->post_type_single = 'Post';
-
-		parent::__construct();
+		parent::__construct( 'post', 'Posts', 'Post' );
 	} // __construct()
 
 	/**

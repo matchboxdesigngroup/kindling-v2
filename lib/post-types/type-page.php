@@ -29,28 +29,7 @@ class MDG_Type_Page extends MDG_Type_Base {
 	 * Class constructor, handles instantiation functionality for the class
 	 */
 	function __construct() {
-		/**
-		 * REQUIRED slug for post type.
-		 *
-		 * @var string
-		 */
-		$this->post_type = 'page';
-
-		/**
-		 * REQUIRED title of post type.
-		 *
-		 * @var string
-		 */
-		$this->post_type_title = 'Pages';
-
-		/**
-		 * REQUIRED singular title.
-		 *
-		 * @var string
-		 */
-		$this->post_type_single = 'Page';
-
-		parent::__construct();
+		parent::__construct( 'page', 'Pages', 'Page' );
 	} // __construct()
 
 	/**

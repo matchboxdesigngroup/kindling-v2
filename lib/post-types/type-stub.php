@@ -49,36 +49,16 @@ class MDG_Type_Stub extends MDG_Type_Base {
 	 * @var  string
 	 */
 	public $landing_page_template = 'template-stub.php';
-		/**
-		* The posts types slug.
-		*
-		* @var  string
-		*/
-		public $post_type = 'stub';
-
-		/**
-		* Title of post type.
-		*
-		* @var  string
-		*/
-		public $post_type_title = 'Stubs';
-
-		/**
-		* Siglular post type title.
-		*
-		* @var  string
-		*/
-		public $post_type_single = 'Stub';
-
 
 	/**
 	 * Class constructor, handles instantiation functionality for the class
 	 */
 	function __construct() {
+		parent::__construct( 'stub', 'Stubs', 'Stub' );
+
 		// MDG_Type_Base Properties.
 		$this->_set_mdg_type_base_options();
 
-		parent::__construct();
 
 		// Add filters and actions.
 		$this->_add_type_actions_filters();
