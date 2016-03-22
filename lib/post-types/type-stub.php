@@ -6,14 +6,12 @@
  */
 
 /**
- * You basically need to change [stub/Stub] to be your post
- * type name and then add your custom meta if needed, if no
- * custom meta is needed then delete the get_custom_meta_fields.
+ * You basically need to change [stub/Stub] to be your post type name.
  * Please do take a look at MDG_Type_Base to see what parameters
  * and methods are already available to use.
  *
  * The properties of MDG_Type_Base that you should/can alter are
- * all in __construct(). Anything thay isn't REQUIRED that you
+ * all in __construct(). Anything that isn't REQUIRED that you
  * do not use please remove before deploying to production. Also
  * any property that is optional has the defaults as an example.
  */
