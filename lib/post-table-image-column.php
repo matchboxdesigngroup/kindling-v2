@@ -15,7 +15,7 @@ trait MDG_Post_Table_Image_Column {
 	 * @param string  $post_type Post type id.
 	 * @param boolean $disable   Optional, if the image column should be disabled. Default false.
 	 */
-	protected function add_image_column_action( $post_type, $disable = false ) {
+	public function add_image_column_action( $post_type, $disable = false ) {
 		if ( $disable ) {
 			return;
 		} // if()
@@ -51,7 +51,7 @@ trait MDG_Post_Table_Image_Column {
 	 *
 	 * @return array $cols The current columns with thumbnail column added.
 	 */
-	private function add_thumbnail_column( $cols ) {
+	public function add_thumbnail_column( $cols ) {
 		$post_type = ( isset( $_GET['post_type'] ) ) ? sanitize_text_field( $_GET['post_type'] ) : ''; // Input var ok.
 
 		// Make sure the post supports thumbnails.
@@ -78,7 +78,7 @@ trait MDG_Post_Table_Image_Column {
 	 * @param array   $col  Current post table columns.
 	 * @param integer $id   The current post ID..
 	 */
-	private function display_thumbnail_column( $col, $id ) {
+	public function display_thumbnail_column( $col, $id ) {
 		global $mdg_thumbnail_column_image_ids;
 
 		// Check if we should display this image.
