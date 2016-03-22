@@ -22,6 +22,8 @@
  * @example lib/post-types/type-stub.php
  */
 abstract class MDG_Type_Base {
+	use MDG_Post_Table_Image_Column;
+
 	/**
 	 * Slug for post type.
 	 *
@@ -191,7 +193,9 @@ abstract class MDG_Type_Base {
 		add_action( 'init', array( &$this, 'register_post_type' ) );
 
 		// Featured image column action.
-		$this->add_image_column_action();
+		add_action( 'init', function() {
+			$this->add_image_column_action( $this->post_type, $this->disable_image_column );
+		} );
 	} // type_base_add_actions()
 
 	/**
@@ -219,99 +223,6 @@ abstract class MDG_Type_Base {
 
 		return false;
 	} // is_current_post_type()
-
-	/**
-	 * Column filter for featured image.
-	 */
-	private function add_image_column_action() {
-		if ( $this->disable_image_column ) {
-			return;
-		} // if()
-
-		switch ( $this->post_type ) {
-			case 'post':
-				$manage_filter = 'manage_posts_columns';
-				$custom_column = 'manage_posts_custom_column';
-				break;
-			case 'page':
-				$manage_filter = 'manage_pages_columns';
-				$custom_column = 'manage_pages_custom_column';
-				break;
-			default:
-				$manage_filter = "manage_{$this->post_type}_posts_columns";
-				$custom_column = "manage_{$this->post_type}_posts_custom_column";
-				break;
-		} // switch()
-
-		add_filter( $manage_filter, array( &$this, 'add_thumbnail_column' ), 5 );
-		add_action( $custom_column, array( &$this, 'display_thumbnail_column' ), 5, 2 );
-	} // add_image_column_action()
-
-	/**
-	 * Adds the thumbnail image column.
-	 *
-	 * @param array $cols Current post table columns.
-	 *
-	 * @return array $cols The current columns with thumbnail column added.
-	 */
-	function add_thumbnail_column( $cols ) {
-		// Make sure the image column has not been disabled.
-		if ( $this->disable_image_column ) {
-			return $cols;
-		} // if()
-
-		// Get the current post type.
-		$post_type = ( isset( $_GET['post_type'] ) ) ? $_GET['post_type'] : '';
-		if ( '' === $post_type ) {
-			return $cols;
-		} // if()
-
-		// Make sure this is the correct post type.
-		if ( ! $this->is_current_post_type( $post_type ) ) {
-			return $cols;
-		} // if()
-
-		// Make sure the post supports thumbnails.
-		if ( ! post_type_supports( $post_type, 'thumbnail' ) ) {
-			return $cols;
-		} // if()
-
-		// Get the post type object.
-		$post_type_obj = get_post_type_object( $post_type );
-		if ( is_null( $post_type_obj ) ) {
-			return $cols;
-		} // if()
-
-		// Set the column.
-		$featured_image_label  = ( isset( $post_type_obj->labels->featured_image ) ) ? $post_type_obj->labels->featured_image : 'Featured Image';
-		$cols['mdg_post_thumb'] = __( $featured_image_label );
-
-		return $cols;
-	} // add_thumbnail_column()
-
-	/**
-	 * Grab featured-thumbnail size post thumbnail and display it.
-	 *
-	 * @param array   $col  Current post table columns.
-	 * @param integer $id   The current post ID..
-	 */
-	function display_thumbnail_column( $col, $id ) {
-		global $mdg_thumbnail_column_image_ids;
-
-		// Check if we should display this image.
-		$post_type         = get_post_type( $id );
-		$column_image_ids  = ( isset( $mdg_thumbnail_column_image_ids ) ) ? $mdg_thumbnail_column_image_ids : array();
-		$already_displayed = in_array( $id, $column_image_ids );
-		$correct_column    = ( 'mdg_post_thumb' === $col );
-		$correct_post_type = $this->is_current_post_type( $post_type );
-
-		if ( $correct_column and $correct_post_type and ! $already_displayed ) {
-			echo get_the_post_thumbnail( $id, 'admin-list-thumb' );
-			$column_image_ids[] = $id;
-		} // if()
-
-		$mdg_thumbnail_column_image_ids = $column_image_ids;
-	} // display_thumbnail_column()
 
 	/**
 	 * Sets the Post Type support array

@@ -24,6 +24,7 @@ $sage_includes = [
 	'lib/actions.php',              // Actions.
 	'lib/filters.php',              // Filters.
 	'lib/image-sizes.php',          // Image sizes.
+	'lib/post-table-image-column.php',
 	'lib/post-types/type-base.php', // Type Base.
 	'lib/post-types/type-page.php', // Post Type: Page.
 	'lib/post-types/type-post.php', // Post Type: Post.
