@@ -137,3 +137,21 @@ if ( ! function_exists( 'pp' ) ) {
 		echo '</pre>';
 	} // pp()
 } // if()
+
+if ( ! function_exists( 'dd' ) ) {
+	/**
+	 * Pretty Print Debug and Die
+	 *
+	 * <code>
+	 * dd( $something_to_pretty_print );
+	 * </code>
+	 *
+	 * @todo  Add localhost check.
+	 *
+	 * @param mixed $value Any value.
+	 */
+	function dd( $value ) {
+		pp( $value );
+		die();
+	} // dd()
+} // if()
