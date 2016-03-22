@@ -181,16 +181,11 @@ class MDG_Type_Base {
 	 * Class constructor, takes care of all the setup needed
 	 */
 	public function __construct() {
-
-		// First make sure the sub class has the required properties
-		if ( ! $this->_passed_config_test() ) {
-			return false; }
-
 		$this->_set_parameters();
 		$this->_type_base_add_actions();
 		$this->init();
 	} // __construct()
-	
+
 
 
 	/**
@@ -438,43 +433,6 @@ class MDG_Type_Base {
 
 		$mdg_thumbnail_column_image_ids = $column_image_ids;
 	} // display_thumbnail_column()
-
-
-
-	/**
-	 * Checks to make sure that the required properties are set or
-	 * the class will halt and produce a warning instead of throwing an
-	 * error.
-	 *
-	 * @return bool If all required properties are set TRUE is returned
-	 */
-	private function _passed_config_test() {
-		if ( ! is_subclass_of( $this, 'MDG_Type_Base' ) ) {
-			return false; }
-
-		$errors = array();
-		$required_properties = array(
-			'post_type'        => $this->post_type,
-			'post_type_title'  => $this->post_type_title,
-			'post_type_single' => $this->post_type_single,
-		);
-
-		foreach ( $required_properties as $property_name => $property ) {
-			if ( is_null( $property ) ) {
-				$errors[] = "Property {$property_name} has not been set in your sub-class.\n"; }
-		} // foreach()
-
-		if ( empty( $errors ) ) {
-			return true;
-		} else {
-			foreach ( $errors as $error ) {
-				echo esc_html( $error ); }
-		} // if/each()
-
-		return false;
-	} // _passed_config_test()
-
-
 
 	/**
 	 * Sets the Post Type support array
