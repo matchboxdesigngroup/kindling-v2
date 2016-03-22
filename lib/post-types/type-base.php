@@ -191,7 +191,6 @@ abstract class MDG_Type_Base {
 
 		$this->_set_parameters();
 		$this->_type_base_add_actions();
-		$this->init();
 	} // __construct()
 
 
@@ -235,19 +234,6 @@ abstract class MDG_Type_Base {
 		$this->disable_image_column = $this->set_default( $this->disable_image_column, false );
 		$this->transient_expiry     = $this->set_default( $this->transient_expiry, ( 3 * HOUR_IN_SECONDS ) );
 	} // _set_parameters()
-
-
-
-	/**
-	 * This method runs after __construct() just a way for sub classes to run custom
-	 * initialization stuff while still inheriting the constructor from this class.
-	 */
-	public function init() {
-		// Overwrite/Extend in Sub-classes do not add anything here!
-		// Use __constructor() or another method in __constructor().
-	} // init()
-
-
 
 	/**
 	 * Actions that need to be set for this base class only using add_action()
