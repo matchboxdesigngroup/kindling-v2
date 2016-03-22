@@ -26,22 +26,11 @@
  */
 class MDG_Type_Stub extends MDG_Type_Base {
 	/**
-	 * Holds all the transient keys for the cache.
-	 *
-	 * @var  array
-	 */
-	public $type_transients = array();
-
-
-
-	/**
 	 * The slug of the post types landing page if not post type archive.
 	 *
 	 * @var  string
 	 */
 	public $landing_page_slug = 'stub';
-
-
 
 	/**
 	 * The slug of the post types landing page template if not post type archive.
@@ -57,25 +46,28 @@ class MDG_Type_Stub extends MDG_Type_Base {
 		parent::__construct( 'stub', 'Stubs', 'Stub' );
 
 		// MDG_Type_Base Properties.
-		$this->_set_mdg_type_base_options();
-
+		$this->set_options();
 
 		// Add filters and actions.
-		$this->_add_type_actions_filters();
+		$this->add_type_actions_filters();
 	} // __construct()
-
-
 
 	/**
 	 * Handles setting of the optional properties of MDG_Type_Base
-	 *
-	 * return Void
 	 */
-	private function _set_mdg_type_base_options() {
-		/** @var array   The taxonomy "name" used in register_taxonomy() */
+	private function set_options() {
+		/**
+		 * The taxonomy "name" used in register_taxonomy().
+		 *
+		 * @var string
+		 */
 		$this->taxonomy_name = "{$this->post_type}-categories";
 
-		/** @var array   Custom taxonomy labels used in register_taxonomy() */
+		/**
+		 * Custom taxonomy labels used in register_taxonomy().
+		 *
+		 * @var array
+		 */
 		$this->custom_taxonomy_labels = array(
 			'name'                       => _x( "{$this->post_type_single} Categories", 'taxonomy general name' ),
 			'singular_name'              => _x( "{$this->post_type_single} Category", 'taxonomy singular name' ),
@@ -96,7 +88,11 @@ class MDG_Type_Stub extends MDG_Type_Base {
 			'not_found'                  => __( "No  {$this->post_type_single} Categories found." ),
 		);
 
-		/** @var array   Custom taxonomy arguments used in register_taxonomy() */
+		/**
+		 * Custom taxonomy arguments used in register_taxonomy().
+		 *
+		 * @var array
+		 */
 		$this->custom_taxonomy_args = array(
 			'hierarchical'      => true,
 			// 'labels'          => This is handled by $this->custom_taxonomy_labels do not set directly
@@ -113,10 +109,18 @@ class MDG_Type_Stub extends MDG_Type_Base {
 			),
 		);
 
-		/** @var boolean  Disable/Enable Categories per post type */
+		/**
+		 * Disable/Enable Categories per post type.
+		 *
+		 * @var boolean
+		 */
 		$this->disable_post_type_categories = false;
 
-		/** @var array   Custom post type supports array used in register_post_type() */
+		/**
+		 * Custom post type supports array used in register_post_type().
+		 *
+		 * @var array
+		 */
 		$this->custom_post_type_supports = array(
 			'title',
 			'editor',         // (content)
@@ -131,14 +135,15 @@ class MDG_Type_Stub extends MDG_Type_Base {
 			'post-formats',
 		);
 
-		// To disable all supports except title, you should always support title no mater what.
-		// $this->custom_post_type_supports = false;
-
 		// Lower case post type labels.
 		$lowercase_post_type_title  = strtolower( $this->post_type_title );
 		$lowercase_post_type_single = strtolower( $this->post_type_single );
 
-		/** @var array   The post types custom labels used in register_post_type() */
+		/**
+		 * The post types custom labels used in register_post_type().
+		 *
+		 * @var array
+		 */
 		$this->custom_post_type_labels = array(
 			'name'                  => __( $this->post_type_title ),
 			'singular_name'         => __( $this->post_type_single ),
@@ -159,7 +164,11 @@ class MDG_Type_Stub extends MDG_Type_Base {
 			'use_featured_image'    => __( "Use as {$lowercase_post_type_single} image" ),
 		);
 
-		/** @var array   Custom post type arguments used in register_post_type() */
+		/**
+		 * Custom post type arguments used in register_post_type().
+		 *
+		 * @var array
+		 */
 		$this->custom_post_type_args = array(
 			// 'labels'          => This is handled by $this->custom_post_type_labels do not set directly
 			'public'             => true,
@@ -177,21 +186,21 @@ class MDG_Type_Stub extends MDG_Type_Base {
 			// 'supports'        => This is handled by $this->post_type_supports do not set directly
 		);
 
-		/** @var array   Used to disable the addition of the featured image column */
+		/**
+		 * Used to disable the addition of the featured image column.
+		 *
+		 * @var boolean
+		 */
 		$this->disable_image_column = false;
-	} // _set_mdg_type_base_options()
-
-
+	} // set_options()
 
 	/**
 	 * Add post type actions & filters
 	 */
-	private function _add_type_actions_filters() {
+	private function add_type_actions_filters() {
 		// Uncomment to redirect the single page to the landing page.
 		// add_action( 'template_redirect', array( &$this, 'single_redirect' ) );
-	} // _add_type_actions_filters()
-
-
+	} // add_type_actions_filters()
 
 	/**
 	 * Handles redirecting the single templates to the main team page.
@@ -199,7 +208,7 @@ class MDG_Type_Stub extends MDG_Type_Base {
 	 * @return  void
 	 */
 	public function single_redirect() {
-		if ( is_single() and get_post_type() == $this->post_type ) {
+		if ( is_single() and $this->post_type === get_post_type() ) {
 			wp_redirect( home_url( "/{$this->landing_page_slug}/" ), '301' );
 			exit();
 		} // if()
