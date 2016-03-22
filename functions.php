@@ -23,6 +23,7 @@ $sage_includes = [
 	'lib/debug.php',                // Debug.
 	'lib/actions.php',              // Actions.
 	'lib/filters.php',              // Filters.
+	'lib/image-sizes.php',          // Image sizes.
 	'lib/post-types/type-base.php', // Type Base.
 	'lib/post-types/type-page.php', // Post Type: Page.
 	'lib/post-types/type-post.php', // Post Type: Post.
