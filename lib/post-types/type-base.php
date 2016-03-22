@@ -199,32 +199,6 @@ abstract class MDG_Type_Base {
 	} // type_base_add_actions()
 
 	/**
-	 * Checks if the current post type is the correct post type.
-	 *
-	 * @param  string  $post_type   The post type name to check against.
-	 * @param  boolean $admin_only  Optional, if it should only check in the admin, default tue.
-	 *
-	 * @return boolean If the post type is correct.
-	 */
-	public function is_current_post_type( $post_type = null, $admin_only = true ) {
-		global $post;
-		$post_type = ( is_null( $post_type ) ) ? $this->post_type : $post_type;
-
-		if ( is_admin() ) {
-			$screen = get_current_screen();
-			if ( isset( $screen ) and $post_type == $screen->post_type ) {
-				return true;
-			} // if()
-		} // if()
-
-		if ( ! $admin_only and isset( $post ) and $post->post_type == $post_type ) {
-			return true;
-		} // if()
-
-		return false;
-	} // is_current_post_type()
-
-	/**
 	 * Sets the Post Type support array
 	 *
 	 * @link https://codex.wordpress.org/Function_Reference/post_type_supports
