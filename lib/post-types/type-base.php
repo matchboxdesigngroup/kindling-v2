@@ -467,9 +467,7 @@ abstract class MDG_Type_Base {
 			'post-formats',
 		);
 
-		if ( $custom_post_type_supports === false ) {
-			$this->_post_type_supports = array( 'title' );
-		} elseif ( ! empty( $custom_post_type_supports ) ) {
+		if ( ! empty( $custom_post_type_supports ) ) {
 			$this->_post_type_supports = $custom_post_type_supports;
 		} else {
 			$this->_post_type_supports = $default_post_type_supports;
