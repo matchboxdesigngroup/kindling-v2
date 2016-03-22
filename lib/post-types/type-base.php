@@ -79,7 +79,7 @@ abstract class MDG_Type_Base {
 	 *
 	 * @var  boolean
 	 */
-	public $disable_image_column;
+	public $disable_image_column = false;
 
 	/**
 	 * Custom post type arguments used in register_post_type().
@@ -166,7 +166,6 @@ abstract class MDG_Type_Base {
 	private function set_properties() {
 		$this->set_taxonomy_properties();
 		$this->set_post_type_properties();
-		$this->set_general_properties();
 	} // set_properties()
 
 	/**
@@ -192,13 +191,6 @@ abstract class MDG_Type_Base {
 		$this->taxonomy_name          = $this->set_default( $this->taxonomy_name, "{$this->post_type}-categories" );
 		$this->set_taxonomy_args( $this->custom_taxonomy_args );
 		$this->disable_post_type_taxonomy = $this->set_default( $this->disable_post_type_taxonomy, false );
-	}
-
-	/**
-	 * Sets the general properties.
-	 */
-	private function set_general_properties() {
-		$this->disable_image_column = $this->set_default( $this->disable_image_column, false );
 	}
 
 	/**
