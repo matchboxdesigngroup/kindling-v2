@@ -142,7 +142,7 @@ abstract class MDG_Type_Base {
 		$this->post_type_title = $post_type_title;
 		$this->post_type_single = $post_type_single;
 
-		$this->set_parameters();
+		$this->set_properties();
 		$this->type_base_add_actions();
 	} // __construct()
 
@@ -163,15 +163,16 @@ abstract class MDG_Type_Base {
 	 *
 	 * @todo Make this cleaner
 	 */
-	private function set_parameters() {
-		// Taxonomy Properties.
-		$this->_taxonomy_args         = $this->set_default( $this->_taxonomy_args, array() );
-		$this->custom_taxonomy_labels = $this->set_default( $this->custom_taxonomy_labels, array() );
-		$this->custom_taxonomy_args   = $this->set_default( $this->custom_taxonomy_args, array() );
-		$this->taxonomy_name          = $this->set_default( $this->taxonomy_name, "{$this->post_type}-categories" );
-		$this->set_taxonomy_args( $this->custom_taxonomy_args );
-		$this->disable_post_type_taxonomy = $this->set_default( $this->disable_post_type_taxonomy, false );
+	private function set_properties() {
+		$this->set_taxonomy_properties();
+		$this->set_post_type_properties();
+		$this->set_general_properties();
+	} // set_properties()
 
+	/**
+	 * Sets the post type properties.
+	 */
+	private function set_post_type_properties() {
 		// Post Type.
 		$this->_post_type_args           = $this->set_default( $this->_post_type_args, array() );
 		$this->custom_post_type_args     = $this->set_default( $this->custom_post_type_args, array() );
@@ -179,10 +180,26 @@ abstract class MDG_Type_Base {
 		$this->custom_post_type_supports = $this->set_default( $this->custom_post_type_supports, array() );
 		$this->set_post_type_supports( $this->custom_post_type_supports );
 		$this->set_post_type_args( $this->custom_post_type_args );
+	}
 
-		// General.
+	/**
+	 * Sets the taxonomy properties.
+	 */
+	private function set_taxonomy_properties() {
+		$this->_taxonomy_args         = $this->set_default( $this->_taxonomy_args, array() );
+		$this->custom_taxonomy_labels = $this->set_default( $this->custom_taxonomy_labels, array() );
+		$this->custom_taxonomy_args   = $this->set_default( $this->custom_taxonomy_args, array() );
+		$this->taxonomy_name          = $this->set_default( $this->taxonomy_name, "{$this->post_type}-categories" );
+		$this->set_taxonomy_args( $this->custom_taxonomy_args );
+		$this->disable_post_type_taxonomy = $this->set_default( $this->disable_post_type_taxonomy, false );
+	}
+
+	/**
+	 * Sets the general properties.
+	 */
+	private function set_general_properties() {
 		$this->disable_image_column = $this->set_default( $this->disable_image_column, false );
-	} // set_parameters()
+	}
 
 	/**
 	 * Actions that need to be set for this base class only using add_action()
