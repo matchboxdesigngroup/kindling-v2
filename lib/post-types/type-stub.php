@@ -207,4 +207,6 @@ class MDG_Type_Stub extends MDG_Type_Base {
 } // END Class MDG_Type_Stub()
 
 global $mdg_stub;
-$mdg_stub = new MDG_Type_Stub();
+if ( ! isset( $mdg_stub ) ) {
+	$mdg_stub = new MDG_Type_Stub();
+}

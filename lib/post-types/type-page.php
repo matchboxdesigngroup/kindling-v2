@@ -39,4 +39,6 @@ class MDG_Type_Page extends MDG_Type_Base {
 } // END Class MDG_Type_Page()
 
 global $mdg_page;
-$mdg_page = new MDG_Type_Page();
+if ( ! isset( $mdg_page ) ) {
+	$mdg_page = new MDG_Type_Page();
+}

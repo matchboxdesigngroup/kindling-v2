@@ -38,5 +38,7 @@ class MDG_Type_Post extends MDG_Type_Base {
 	public function register_post_type() {}
 } // END Class MDG_Type_Post()
 
-global $mdg_page;
-$mdg_page = new MDG_Type_Post();
+global $mdg_post;
+if ( ! isset( $mdg_post ) ) {
+	$mdg_post = new MDG_Type_Post();
+}
