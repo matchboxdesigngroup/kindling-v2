@@ -1,0 +1,121 @@
+// ===============================================
+// Media Queries
+// ===============================================
+
+// Media Query Min Width.
+// @param $screen-size Min device width.
+@mixin bp-min($screen-size) {
+  @media (min-width: $screen-size) {
+    @content;
+  }
+}
+
+// Media Query Max Width.
+// @param $screen-size Max device width.
+@mixin bp-max($screen-size) {
+  @media (max-width: $screen-size) {
+    @content;
+  }
+}
+
+// Media Query Min/Max
+// @param $min Min device width.
+// @param $max Max device width.
+@mixin bp-min-max($min, $max) {
+  @media (min-width: $min) and (max-width: $max) {
+    @content;
+  }
+}
+
+// ===============================================
+// Media Sizes
+$screen-xs: 480px;
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1200px;
+// ===============================================
+
+// Extra small devices (phones, less than 768px)
+@mixin bp-screen-xxs() {
+  @include bp-max($screen-xs) {
+    @content;
+  }
+} // bp-screen-xxs()
+
+// Small devices (tablets, 768px and down)
+@mixin bp-screen-xs() {
+  @include bp-max($screen-sm-min) {
+    @content;
+  }
+} // bp-screen-xs()
+
+// Small devices (tablets, 768px and up)
+@mixin bp-screen-sm() {
+  @include bp-min($screen-sm-min) {
+    @content;
+  }
+} // bp-screen-sm()
+
+// Medium devices (desktops, 992px and up)
+@mixin bp-screen-md() {
+  @include bp-min($screen-md-min) {
+    @content;
+  }
+} // bp-screen-md()
+
+// Large devices (large desktops, 1200px and up)
+@mixin bp-screen-lg() {
+  @include bp-min($screen-lg-min) {
+    @content;
+  }
+} // bp-screen-lg()
+
+// ===============================================
+// Media Quearies to limit CSS to a narrower set of devices.
+// ===============================================
+// Used to target small devices only
+@mixin bp-min-max-sm() {
+  @include bp-min-max($screen-sm-min, $screen-sm-max) {
+    @content;
+  }
+} // bp-min-max-sm()
+
+// Used to target medium devices only
+@mixin bp-min-max-md() {
+  @include bp-min-max($screen-md-min, $screen-md-max) {
+    @content;
+  }
+} // bp-min-max-md()
+
+// Handles link interaction states hover, active, focus
+//
+// @param  {string}  $active-class  Optional. The active class to use. Default .active.
+@mixin link-interact($active-class: '.active') {
+  #{$active-class},
+  &:hover,
+  &:active,
+  &:focus {
+    @content;
+  } // &:hover, &:active, &:focus
+} // link-interact()
+
+
+// Handles default link states link, visited.
+@mixin link-default {
+  &:link,
+  &:visited {
+    @content;
+  } // &:link, &:visited
+} // @mixin link-default
+// Shortcut to setting position top, right, bottom, and left.
+//
+// @param {number} $top    Optional, the top position. Default 0.
+// @param {number} $right  Optional, the right position. Default 0.
+// @param {number} $bottom Optional, the bottom position. Default 0.
+// @param {number} $left   Optional, the left position. Default 0.
+@mixin positions($top: 0, $right:0, $bottom:0, $left:0) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+} // @mixin positions
