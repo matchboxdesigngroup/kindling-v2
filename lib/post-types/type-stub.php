@@ -56,6 +56,24 @@ class MDG_Type_Stub extends MDG_Type_Base {
 	 * Handles setting of the optional properties of MDG_Type_Base
 	 */
 	private function set_options() {
+		// Taxonomy options.
+		$this->set_taxonomy_options();
+
+		// Post type options.
+		$this->set_post_type_options();
+
+		/**
+		 * Used to disable the addition of the featured image column.
+		 *
+		 * @var boolean
+		 */
+		$this->disable_image_column = false;
+	} // set_options()
+
+	/**
+	 * Set the taxonomy options.
+	 */
+	private function set_taxonomy_options() {
 		/**
 		 * The taxonomy "name" used in register_taxonomy().
 		 *
@@ -114,8 +132,13 @@ class MDG_Type_Stub extends MDG_Type_Base {
 		 *
 		 * @var boolean
 		 */
-		$this->disable_post_type_categories = false;
+		$this->disable_post_type_taxonomy = false;
+	}
 
+	/**
+	 * Set the post type options.
+	 */
+	private function set_post_type_options() {
 		/**
 		 * Custom post type supports array used in register_post_type().
 		 *
@@ -185,14 +208,7 @@ class MDG_Type_Stub extends MDG_Type_Base {
 			'menu_icon'          => 'dashicons-edit',
 			// 'supports'        => This is handled by $this->post_type_supports do not set directly
 		);
-
-		/**
-		 * Used to disable the addition of the featured image column.
-		 *
-		 * @var boolean
-		 */
-		$this->disable_image_column = false;
-	} // set_options()
+	}
 
 	/**
 	 * Add post type actions & filters

@@ -119,7 +119,7 @@ abstract class MDG_Type_Base {
 	 *
 	 * @var  boolean
 	 */
-	public $disable_post_type_categories;
+	public $disable_post_type_taxonomy;
 
 	/**
 	 * Disable/Enable thumbnail post table column.
@@ -168,7 +168,7 @@ abstract class MDG_Type_Base {
 		$this->custom_taxonomy_args   = $this->set_default( $this->custom_taxonomy_args, array() );
 		$this->taxonomy_name          = $this->set_default( $this->taxonomy_name, "{$this->post_type}-categories" );
 		$this->set_taxonomy_args( $this->custom_taxonomy_args );
-		$this->disable_post_type_categories = $this->set_default( $this->disable_post_type_categories, false );
+		$this->disable_post_type_taxonomy = $this->set_default( $this->disable_post_type_taxonomy, false );
 
 		// Post Type.
 		$this->_post_type_args           = $this->set_default( $this->_post_type_args, array() );
@@ -355,7 +355,7 @@ abstract class MDG_Type_Base {
 		register_post_type( $this->post_type, $this->_post_type_args );
 
 		// Register taxonomy for post type.
-		if ( ! $this->disable_post_type_categories ) {
+		if ( ! $this->disable_post_type_taxonomy ) {
 			register_taxonomy(
 				$this->taxonomy_name,
 				array( $this->post_type ),
