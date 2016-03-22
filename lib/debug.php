@@ -124,12 +124,12 @@ if ( ! function_exists( 'pp' ) ) {
 	 * @param mixed $value Any value.
 	 */
 	function pp( $value ) {
-		global $mdg_utilities;
+		if ( !mdg_is_localhost() ) {
+			return;
+		}
 
-		$is_localhost = mdg_is_localhost();
-		if ( ! $is_localhost ) return;
 		echo '<pre>';
-		if ( gettype( $value ) === 'boolean' ) {
+		if ( is_string( $value) or is_bool( $value ) or is_null( $value ) ) {
 			var_dump( $value );
 		} else {
 			print_r( $value );
