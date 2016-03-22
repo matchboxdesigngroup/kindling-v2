@@ -31,11 +31,6 @@ class MDG_Type_Post extends MDG_Type_Base {
 	function __construct() {
 		parent::__construct( 'post', 'Posts', 'Post' );
 	} // __construct()
-
-	/**
-	 * Disables creating post type since post is a default post type.
-	 */
-	public function register_post_type() {}
 } // END Class MDG_Type_Post()
 
 global $mdg_post;

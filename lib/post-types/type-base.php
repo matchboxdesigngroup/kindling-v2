@@ -249,9 +249,9 @@ abstract class MDG_Type_Base {
 	 * Registers the post type and a custom taxonomy for the post type..
 	 */
 	public function register_post_type() {
-		// Make sure the post type info is set - none of this will work without it!
-		if ( is_null( $this->post_type ) or is_null( $this->post_type_title ) or is_null( $this->post_type_single ) ) {
-			return false; }
+		if ( post_type_exists( $this->post_type ) ) {
+			return;
+		}
 
 		// Register post type.
 		register_post_type( $this->post_type, $this->_post_type_args );

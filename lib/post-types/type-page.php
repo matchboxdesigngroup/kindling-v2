@@ -31,11 +31,6 @@ class MDG_Type_Page extends MDG_Type_Base {
 	function __construct() {
 		parent::__construct( 'page', 'Pages', 'Page' );
 	} // __construct()
-
-	/**
-	 * Disables creating post type since post is a default post type.
-	 */
-	public function register_post_type() {}
 } // END Class MDG_Type_Page()
 
 global $mdg_page;
