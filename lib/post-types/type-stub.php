@@ -43,13 +43,13 @@ class MDG_Type_Stub extends MDG_Type_Base {
 	 * Class constructor, handles instantiation functionality for the class
 	 */
 	function __construct() {
-		parent::__construct( 'stub', 'Stubs', 'Stub' );
-
 		// MDG_Type_Base Properties.
 		$this->set_options();
 
 		// Add filters and actions.
 		$this->add_type_actions_filters();
+
+		parent::__construct( 'stub', 'Stubs', 'Stub' );
 	} // __construct()
 
 	/**
