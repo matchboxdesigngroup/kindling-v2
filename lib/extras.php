@@ -1,13 +1,16 @@
 <?php
-
-namespace Roots\Sage\Extras;
+/**
+ * Theme Custom Functions.
+ *
+ * @package Kindling
+ */
 
 use Roots\Sage\Setup;
 
 /**
  * Add <body> classes
  */
-function body_class($classes) {
+function mdg_body_class($classes) {
   // Add page slug if it doesn't exist
   if (is_single() || is_page() && !is_front_page()) {
     if (!in_array(basename(get_permalink()), $classes)) {
@@ -22,12 +25,12 @@ function body_class($classes) {
 
   return $classes;
 }
-add_filter('body_class', __NAMESPACE__ . '\\body_class');
+add_filter('body_class', 'mdg_body_class');
 
 /**
  * Clean up the_excerpt()
  */
-function excerpt_more() {
+function mdg_excerpt_more() {
   return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'sage') . '</a>';
 }
-add_filter('excerpt_more', __NAMESPACE__ . '\\excerpt_more');
+add_filter('excerpt_more', 'mdg_excerpt_more');
