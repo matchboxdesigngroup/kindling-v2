@@ -32,8 +32,6 @@ function mdg_check_hosts( $http_hosts = array() ) {
 	return false;
 } // mdg_check_hosts()
 
-
-
 /**
  * Checks if the current HTTP host is localhost.
  * Default possible HTTP hosts http://localhost, 127.0.0.1, 10.0.0.2, http://*.dev.
@@ -68,8 +66,6 @@ function mdg_is_localhost() {
 	return mdg_check_hosts( $http_hosts );
 } // mdg_is_localhost()
 
-
-
 /**
  * Checks if the current host is a staging site.
  *
@@ -94,7 +90,6 @@ function mdg_is_staging() {
 	return mdg_check_hosts( $http_hosts );
 } // mdg_is_staging()
 
-
 /**
  * Enables Jetpack devleopment mode.
  *
@@ -108,8 +103,6 @@ function mdg_enable_jetpack_development_mode( $enabled ) {
 	return $enabled;
 } // mdg_enable_jetpack_development_mode()
 add_filter( 'jetpack_development_mode', 'mdg_enable_jetpack_development_mode' );
-
-
 
 if ( ! function_exists( 'pp' ) ) {
 	/**
