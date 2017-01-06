@@ -34,3 +34,73 @@ function mdg_excerpt_more() {
   return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'sage') . '</a>';
 }
 add_filter('excerpt_more', 'mdg_excerpt_more');
+
+/**
+ * Retrieves a template from /templates.
+ *
+ * @since  Kindling 1.0.2
+ *
+ * @param  string  $path The path to the file in the templates directory.
+ * @param  array   $data Optional, Data to pass through to the template. Default none.
+ * @param  boolean $once Optional, if the template should be included once. Default false.
+ */
+function mdg_template($path, $data = [], $once = false) {
+	$path = ltrim( $path, 'templates' );
+	$path = ltrim( $path, '/' );
+	mdg_load_template_file( "templates/{$path}" );
+}
+
+/**
+ * Loads a template file.
+ *
+ * @since  Kindling 1.0.2
+ *
+ * @param  string  $path The path to the file in the templates directory.
+ * @param  array   $data Optional, Data to pass through to the template. Default none.
+ * @param  boolean $once Optional, if the template should be included once. Default false.
+ */
+function mdg_load_template_file($path, $data = [], $once = false) {
+	$template = mdg_locate_template_file( "templates/{$path}" );
+	if ( ! $template ) {
+		return;
+	}
+
+	// Allow access to data in the template files.
+	// @codingStandardsIgnoreStart
+	extract( $data );
+	// @codingStandardsIgnoreEnd
+
+	if ( $once ) {
+		require_once $template;
+	} else {
+		require $template;
+	}
+}
+
+/**
+ * Locates a file in the template.
+ * Defaults to the child theme if active and the template is available.
+ *
+ * @since  Kindling 1.0.2
+ *
+ * @param  string $path Path in the directory.
+ *
+ * @return string       The path to the template file.
+ */
+function mdg_locate_template_file($path) {
+	$path = trim( rtrim( $path, '.php' ), '/' );
+	$file = get_stylesheet_directory() . "/{$path}.php";
+
+	// Handle child theme files and themes without children.
+	if ( file_exists( $file ) ) {
+		return $file;
+	}
+
+	// Handle child themes that do not overwrite the parent themes file.
+	$file = get_template_directory() . "/{$path}.php";
+	if ( file_exists( $file ) ) {
+		return $file;
+	}
+
+	return '';
+}
