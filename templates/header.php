@@ -17,6 +17,7 @@
 					'theme_location' => 'primary_navigation',
 					'walker' => new Kindling\wp_bootstrap_navwalker(),
 					'menu_class' => 'nav navbar-nav navbar-hover',
+					'depth' => 2,
 				] );
 			}
 			?>
