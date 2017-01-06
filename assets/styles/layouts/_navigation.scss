@@ -3,14 +3,16 @@
 // =================================
 .navbar-hover {
 	li.dropdown {
-		&:hover {
-			& > .dropdown-menu {
-				display: block;
-			} // & > .dropdown-menu
-		} // &:hover
+		@include bp-screen-sm {
+			&:hover {
+				& > .dropdown-menu {
+					display: block;
+				} // & > .dropdown-menu
+			} // &:hover
 
-		.caret {
-			display: none;
-		} // .caret
+			.caret {
+				display: none;
+			} // .caret
+		} // @include bp-screen-sm
 	} // li.dropdown
 } // .navbar-hover
