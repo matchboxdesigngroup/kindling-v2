@@ -2,19 +2,13 @@
 // Columns
 // =========================================================
 .col-half {
-	width: 50%;
-	float: left;
-	padding: 0 30px;
+	@include make-sm-column(6);
 } // col-half
 
 .col-third {
-	width: 33.3333%;
-	padding-right: 20px;
-	float: left;
+	@include make-sm-column(4);
 } // col-third
 
 .col-quarter {
-	width: 25%;
-	padding-right: 20px;
-	float: left;
+	@include make-sm-column(3);
 } // col-quarter

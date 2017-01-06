@@ -120,6 +120,8 @@ jQuery((function($) {
 	 * Document Ready
 	 */
 	$(document).ready(function() {
+		$( 'p:empty' ).remove();
+
 		site.initFitVids();
 	});
 
