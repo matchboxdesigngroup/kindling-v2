@@ -51,12 +51,12 @@ function setup() {
   // To add custom styles edit /assets/styles/layouts/_tinymce.scss
   add_editor_style(Assets\asset_path('styles/main.css'));
 }
-add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
+add_action('after_setup_theme', 'mdg_theme_setup');
 
 /**
- * Register sidebars
+ * Register sidebars.
  */
-function widgets_init() {
+function mdg_widgets_init() {
   register_sidebar([
     'name'          => __('Primary', 'sage'),
     'id'            => 'sidebar-primary',
@@ -66,12 +66,12 @@ function widgets_init() {
     'after_title'   => '</h3>'
   ]);
 }
-add_action('widgets_init', __NAMESPACE__ . '\\widgets_init');
+add_action('widgets_init', 'mdg_widgets_init');
 
 /**
  * Determine which pages should NOT display the sidebar
  */
-function display_sidebar() {
+function mdg_display_sidebar() {
   static $display;
 
   isset($display) || $display = !in_array(true, [
@@ -86,9 +86,9 @@ function display_sidebar() {
 }
 
 /**
- * Theme assets
+ * Theme assets.
  */
-function assets() {
+function mdg_assets() {
   $theme         = wp_get_theme();
 	$theme_version = $theme->get( 'Version' );
 
@@ -100,14 +100,14 @@ function assets() {
 
   wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], $theme_version, true);
 }
-add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
+add_action('wp_enqueue_scripts', 'mdg_assets', 100);
 
 /**
- * Administrator assets
+ * Administrator assets.
  */
-function admin_assets() {
+function mdg_admin_assets() {
 	$version = wp_get_theme()->get( 'Version' );
 
   wp_enqueue_style('sage/css', Assets\asset_path('styles/main-admin.css'), false, $version);
 }
-add_action('admin_enqueue_scripts', __NAMESPACE__ . '\\admin_assets', 100);
+add_action('admin_enqueue_scripts', 'mdg_admin_assets', 100);
