@@ -42,3 +42,11 @@ add_action( 'gform_field_css_class', function( $classes, $field, $form ){
 
   return $classes;
 }, 10, 3 );
+
+/**
+ * Declare WooCommerce theme support.
+ */
+function mdg_woocommerce_support() {
+	add_theme_support( 'woocommerce' );
+}
+add_action( 'after_setup_theme', 'mdg_woocommerce_support' );
