@@ -1,31 +1,27 @@
-sudo: false
 language: php
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+
+branches:
+  only:
+    - master
+
 php:
-  - nightly
+  - 5.3
   - 5.6
-  - 5.5
-  - 5.4
-  - hhvm
+
+env:
+  - WP_VERSION=latest WP_MULTISITE=0
 
 matrix:
-  allow_failures:
-    - php: nightly
+  include:
+    - php: 5.3
+      env: WP_VERSION=latest WP_MULTISITE=1
 
-cache:
-  directories:
-    - bower_components
-    - node_modules
+before_script:
+  - bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
 
-install:
-  - npm install -g npm@latest
-  - npm install -g bower gulp jscs
-  - npm install
-  - composer self-update && composer --version
-  - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - composer global require squizlabs/php_codesniffer
-
-script:
-  - npm run build
-  - npm run jshint
-  - npm run jscs
-  - phpcs --standard=ruleset.xml --extensions=php -n -s .
+script: phpunit

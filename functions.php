@@ -32,8 +32,10 @@ $sage_includes = [
 	'lib/post-types/type-stub.php', // Post Type: Stub.
 ];
 
+
 foreach ( $sage_includes as $file ) {
-	if ( ! $filepath = locate_template( $file ) ) {
+	$filepath = __DIR__ . "/{$file}";
+	if ( ! file_exists( $filepath ) ) {
 		trigger_error( sprintf( __( 'Error locating %s for inclusion', 'sage' ), $file ), E_USER_ERROR );
 	}
 
