@@ -1,4 +1,10 @@
 <?php
+/**
+ * Template wrapper.
+ *
+ * @package Kindling
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
+ */
 
 namespace Roots\Sage\Wrapper;
 

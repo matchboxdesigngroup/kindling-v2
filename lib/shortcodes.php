@@ -4,12 +4,9 @@
  *
  * @see http://codex.wordpress.org/Shortcode_API
  *
- * @package      WordPress
- * @subpackage   Kindling
- *
- * @author       Matchbox Design Group <info@matchboxdesigngroup.com>
+ * @package Kindling
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
-
 
 /**
  * Adds a simple divider.

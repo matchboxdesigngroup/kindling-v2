@@ -1,13 +1,17 @@
 <?php
-
-namespace Roots\Sage\Setup;
+/**
+ * Theme setup.
+ *
+ * @package Kindling
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
+ */
 
 use Roots\Sage\Assets;
 
 /**
- * Theme setup
+ * Theme setup.
  */
-function setup() {
+function mdg_theme_setup() {
   // Enable features from Soil when plugin is activated
   // https://roots.io/plugins/soil/
   add_theme_support('soil-clean-up');
