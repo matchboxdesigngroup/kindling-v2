@@ -2,8 +2,8 @@
 /**
  * Kindling Type Base Class.
  *
- * @package WordPress
- * @subpackage Kindling
+ * @package Kindling
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
 /**

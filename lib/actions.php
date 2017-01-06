@@ -1,6 +1,9 @@
 <?php
 /**
  * Theme Actions.
+ *
+ * @package Kindling
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
 /**

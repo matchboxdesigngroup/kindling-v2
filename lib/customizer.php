@@ -1,4 +1,10 @@
 <?php
+/**
+ * Theme Customizer.
+ *
+ * @package Kindling
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
+ */
 
 namespace Roots\Sage\Customizer;
 

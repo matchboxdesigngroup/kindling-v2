@@ -3,6 +3,7 @@
  * Post Type: Stub
  *
  * @package Kindling
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
 /**

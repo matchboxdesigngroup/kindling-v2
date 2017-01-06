@@ -2,9 +2,8 @@
 /**
  * Kindling debug/development.
  *
- * @package     WordPress
- * @subpackage  Kindling
- * @since       Kindling 1.0.2
+ * @package Kindling
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
 /**

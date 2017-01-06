@@ -1,4 +1,10 @@
 <?php
+/**
+ * Bootstrap Navigation Walker.
+ *
+ * @package Kindling
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
+ */
 
 /**
  * Class Name: wp_bootstrap_navwalker

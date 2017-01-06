@@ -3,6 +3,7 @@
  * Theme Custom Functions.
  *
  * @package Kindling
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
 use Roots\Sage\Setup;
