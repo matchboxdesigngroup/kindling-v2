@@ -50,3 +50,10 @@ function mdg_woocommerce_support() {
 	add_theme_support( 'woocommerce' );
 }
 add_action( 'after_setup_theme', 'mdg_woocommerce_support' );
+
+/**
+ * Register image sizes.
+ */
+add_action( 'init', function() {
+	Kindling\ImageSizes::register();
+});

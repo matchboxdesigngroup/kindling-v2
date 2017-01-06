@@ -1,85 +1,141 @@
 <?php
 /**
- * SN Images Class.
+ * Image Sizes Class.
  *
- * @package WordPress
+ * @package Kindling
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
+
+namespace Kindling;
 
 /**
  * Handles adding custom image sizes and other global image related functionality.
  */
-class MDG_Image_Sizes {
+class ImageSizes {
 	/**
 	 * The available image sizes.
 	 *
-	 * @since Snifter 1.0.0
+	 * @since Kindling 1.0.2
 	 *
 	 * @var  array
 	 */
-	public $image_sizes = array();
-
-
-
-	/**
-	 * Class constructor
-	 *
-	 * @since Snifter 1.0.0
-	 */
-	public function __construct() {
-		// Custom Image Sizes.
-		$this->set_image_sizes();
-		$this->register_sizes();
-	} // __construct()
+	public static $image_sizes = array();
 
 	/**
 	 * Sets all of the custom image sizes.
+	 *
+	 * @since Kindling 1.0.2
 	 */
-	public function set_image_sizes() {
+	public static function get_image_sizes() {
+		$image_sizes = [];
+
 		// Featured image administrator column image size.
-		$this->image_sizes[] = array(
-			'title'   => 'admin-list-thumb', // The default will be widthxheight but any string can be used.
-			'width'   => 100,
-			'height'  => 100,
-			'crop'    => true,
+		$image_sizes[] = array(
+			'title' => 'admin-list-thumb', // The default will be widthxheight but any string can be used.
+			'width' => 100,
+			'height' => 100,
+			'crop' => true,
+			'disable_choose' => true,  // Disables the ability to be added to the size selector in the media manager.
 		);
-	} // function set_image_sizes()
+
+		return $image_sizes;
+	}
 
 	/**
 	 * Registers all of the new image sizes for use in our theme
 	 *
-	 * @since Snifter 1.0.0
+	 * @since Kindling 1.0.2
 	 *
 	 * <code>
-	 * $this->image_sizes[] = array(
-	 *  'width'  => 220,
-	 *  'height' => 130,
-	 *  'title'  => '220x130',
-	 *  'crop'   => true,
+	 * Self::image_sizes[] = array(
+	 *  'width' => 220,
+	 *  'height => 130,
+	 *  'title' => '220x130',
+	 *  'crop' => true,
+	 *  'disable_choose' => false,
 	 * );
 	 * </code>
 	 *
 	 * @return  void
 	 */
-	public function register_sizes() {
+	public static function register() {
 		// First set the thumb size and make sure that this theme supports thumbs.
 		if ( function_exists( 'add_theme_support' ) ) {
 			add_theme_support( 'post-thumbnails' );
-			set_post_thumbnail_size( 140, 140 ); // default Post Thumbnail dimensions
+			set_post_thumbnail_size( 140, 140 ); // Default Post Thumbnail dimensions.
 		} // if()
 
 		// Now add the sizes.
-		if ( function_exists( 'add_image_size' ) ) {
-			foreach ( $this->image_sizes as $image_size ) {
-				$width   = isset( $image_size['width'] ) ? $image_size['width'] : '';
-				$height  = isset( $image_size['height'] ) ? $image_size['height'] : '';
-				$title   = isset( $image_size['title'] ) ? $image_size['title'] : "{$width}x{$height}";
-				$crop    = isset( $image_size['crop'] ) ? $image_size['crop'] : true;
+		$sizes = Self::get_image_sizes();
+		Self::add_sizes( $sizes );
+	}
 
-				add_image_size( $title, $width, $height, $crop );
-			}
+	/**
+	 * Ads the image sizes.
+	 *
+	 * @since Kindling 1.0.2
+	 *
+	 * @param array $sizes The image sizes to add.
+	 */
+	protected static function add_sizes($image_sizes)
+	{
+		if ( ! function_exists( 'add_image_size' ) ) {
+			return;
 		} // if()
-	} // function register_sizes()
-} // END Class MDG_Image_Sizes()
 
-new MDG_Image_Sizes();
+		// Register the image sizes.
+		foreach ( $image_sizes as $size ) {
+			Self::add_size($size);
+		}
+
+		// Add the images to the media manager image size select.
+		add_filter('image_size_names_choose', function($sizes) use ($image_sizes) {
+			return array_merge( $sizes, Self::get_image_size_names_choose( $image_sizes ) );
+		});
+	}
+
+	/**
+	 * Adds an image size.
+	 *
+	 * @since Kindling 1.0.2
+	 *
+	 * @param array $size Image size to add.
+	 */
+	protected static function add_size($size)
+	{
+		$width = isset( $size['width'] ) ? $size['width'] : '';
+		$height = isset( $size['height'] ) ? $size['height'] : '';
+		$title = isset( $size['title'] ) ? $size['title'] : "{$width}x{$height}";
+		$crop = isset( $size['crop'] ) ? $size['crop'] : true;
+
+		add_image_size( $title, $width, $height, $crop );
+	}
+
+	/**
+	 * Get the image sizes for the media manager size select.
+	 *
+	 * @since Kindling 1.0.2
+	 *
+	 * @param  array $size Image size to add.
+	 *
+	 * @return array       The image sizes for the media manager size select.
+	 */
+	protected static function get_image_size_names_choose($sizes)
+	{
+		$choose_sizes = [];
+
+		foreach ( $sizes as $size ) {
+			if ( isset( $size['disable_choose'] ) && (bool) $size['disable_choose'] ) {
+				continue;
+			}
+
+			$width   = isset( $size['width'] ) ? $size['width'] : '';
+			$height  = isset( $size['height'] ) ? $size['height'] : '';
+			$title   = isset( $size['title'] ) ? $size['title'] : "{$width}x{$height}";
+			$label = ucwords( str_replace( [ '-', '_' ], ' ', $title ) );
+			$choose_sizes[ $title ] = $label;
+		}
+
+		return $choose_sizes;
+	}
+}
