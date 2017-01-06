@@ -91,6 +91,36 @@ function mdg_is_staging() {
 } // mdg_is_staging()
 
 /**
+ * Gets the environment type.
+ *
+ * @since   Kindling 1.0.2
+ *
+ * @return string The environment type.
+ */
+function mdg_get_environment_type() {
+	if ( mdg_is_localhost() ) {
+		return 'local';
+	}
+
+	if ( mdg_is_staging() ) {
+		return 'staging';
+	}
+
+	return 'production';
+}
+
+/**
+ * Checks if the current host is a production site.
+ *
+ * @since   Kindling 1.0.2
+ *
+ * @return  boolean  If the current host is a production site.
+ */
+function mdg_is_production() {
+	return ( 'production' === mdg_get_environment_type() );
+}
+
+/**
  * Enables Jetpack devleopment mode.
  *
  * @param boolean $enabled If Jetpack is currently enabled.

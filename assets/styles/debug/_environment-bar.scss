@@ -1,0 +1,38 @@
+// =====================================
+// Environment Bar Body
+// =====================================
+body.mdg-environment-bar-enabled {
+	padding-top: 24px;
+} // body.mdg-environment-bar-enabled
+
+// =====================================
+// Environment Bar
+// =====================================
+.mdg-environment-bar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-color: $color-danger;
+	height: 24px;
+	font-size: 14px;
+	color: $color2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: uppercase;
+	white-space: nowrap;
+	overflow: hidden;
+
+	.admin-bar & {
+		top: 32px;
+	} // .admin-bar &
+} // .mdg-environment-bar
+
+// =====================================
+// Environment Bar Message
+// =====================================
+.mdg-environment-bar-message {
+	display: inline-block;
+	margin-right: 10px;
+} // .mdg-environment-bar-message

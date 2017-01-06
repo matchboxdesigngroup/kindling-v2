@@ -13,6 +13,11 @@
       ],
       "main": true
     },
+    "main-admin.css": {
+      "files": [
+        "styles/main-admin.scss"
+      ]
+    },
     "customizer.js": {
       "files": [
         "scripts/customizer.js"
