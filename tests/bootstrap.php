@@ -14,9 +14,31 @@ if ( ! $_tests_dir ) {
 require_once $_tests_dir . '/includes/functions.php';
 
 /**
+ * Loads theme required plugins.
+ *
+ * @param  array $files The plugin main files. Example woocommerce/woocommerce.php.
+ */
+function _load_theme_required_plugin_files($files) {
+	$directory = dirname( dirname( dirname( dirname( __FILE__ ) ) ) ) . '/plugins';
+	foreach ( $files as $file ) {
+		$file = ltrim( $file, '/' );
+		$path = "{$directory}/{$file}";
+
+		require_once $path;
+	}
+}
+
+/**
  * Manually load the plugin being tested.
  */
 function _manually_load_plugin() {
+	// Load required plugins.
+	_load_theme_required_plugin_files( [
+		// 'woocommerce/woocommerce.php',
+		// 'advanced-custom-fields-pro/acf.php',
+		// 'shortcode-ui/shortcode-ui.php',
+	] );
+
 	require dirname( dirname( __FILE__ ) ) . '/functions.php';
 }
 tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
