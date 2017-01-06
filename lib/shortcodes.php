@@ -134,3 +134,23 @@ function mdg_clear_shortcode( $atts ) {
 	return '<div class="clear"></div>';
 } // mdg_clear_shortcode()
 add_shortcode( 'clear','mdg_clear_shortcode' );
+
+/**
+ * Adds row shortcode.
+ *
+ * <code>
+ * [row]
+ * Content
+ * [/row]
+ * </code>
+ *
+ * @param   array  $atts    ShortCode attributes.
+ * @param   string $content ShortCode inner content.
+ *
+ * @return string           The row HTML.
+ */
+function mdg_row_shortcode( $atts, $content ) {
+	$content = apply_filters( 'the_content', $content );
+	return "<div class='row'>{$content}</div>";
+}
+add_shortcode( 'row','mdg_row_shortcode' );
