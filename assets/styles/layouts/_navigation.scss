@@ -1,0 +1,16 @@
+// =================================
+// Navbar With Hover
+// =================================
+.navbar-hover {
+	li.dropdown {
+		&:hover {
+			& > .dropdown-menu {
+				display: block;
+			} // & > .dropdown-menu
+		} // &:hover
+
+		.caret {
+			display: none;
+		} // .caret
+	} // li.dropdown
+} // .navbar-hover

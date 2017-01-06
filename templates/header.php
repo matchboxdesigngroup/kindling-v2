@@ -1,4 +1,4 @@
-<header class="banner navbar navbar-default navbar-static-top" role="banner">
+<header class="banner navbar navbar-static-top" role="banner">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
@@ -16,7 +16,7 @@
 				wp_nav_menu( [
 					'theme_location' => 'primary_navigation',
 					'walker' => new Kindling\wp_bootstrap_navwalker(),
-					'menu_class' => 'nav navbar-nav',
+					'menu_class' => 'nav navbar-nav navbar-hover',
 				] );
 			}
 			?>
