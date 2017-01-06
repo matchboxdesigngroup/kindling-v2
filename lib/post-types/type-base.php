@@ -6,6 +6,10 @@
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
+namespace Kindling\Post_Types;
+
+use Kindling\PostTableImageColumn;
+
 /**
  * This is a base for custom post type classes so they can all take advantage of the same logic.
  *
@@ -22,7 +26,7 @@
  * @example lib/post-types/type-stub.php
  */
 abstract class MDG_Type_Base {
-	use MDG_Post_Table_Image_Column;
+	use PostTableImageColumn;
 
 	/**
 	 * Slug for post type.

@@ -6,6 +6,8 @@
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
+namespace Kindling\Post_Types;
+
 /**
  * Handles anything custom for the default WordPress "post" post type.
  */

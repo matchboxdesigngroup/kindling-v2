@@ -6,6 +6,8 @@
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
+namespace Kindling\Post_Types;
+
 /**
  * You basically need to change [stub/Stub] to be your post type name.
  * Please do take a look at MDG_Type_Base to see what parameters

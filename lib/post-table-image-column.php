@@ -2,13 +2,16 @@
 /**
  * Post Table Image Column.
  *
- * @package WordPress
+ * @package Kindling
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
+
+namespace Kindling;
 
 /**
  * Adds the image column to the posts table.
  */
-trait MDG_Post_Table_Image_Column {
+trait PostTableImageColumn {
 	/**
 	 * Column filter for featured image.
 	 *
