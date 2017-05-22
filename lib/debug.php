@@ -155,3 +155,25 @@ if ( ! function_exists( 'dd' ) ) {
 		die();
 	} // dd()
 } // if()
+
+/**
+ * Prints a filter/action for a hook.
+ *
+ * @param  string $hook
+ */
+function print_hooks_for($hook)
+{
+    pp(get_filters_for($hook));
+}
+
+/**
+ * Gets a filter/action for a hook.
+ *
+ * @param string $hook
+ */
+function get_hooks_for($hook)
+{
+    global $wp_filter;
+
+    return isset($wp_filter[ $hook ]) ? $wp_filter[ $hook ] : '';
+}
