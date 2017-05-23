@@ -1,0 +1,22 @@
+{
+    "name": "dholloran/kindling-development.php",
+    "description": "Development helpers for the kindling base theme.",
+    "keywords": [],
+    "license": "GPL-3.0",
+    "type": "project",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Kindling\\Development\\": "src/"
+        },
+        "files": [
+            "constants.php",
+            "libs/functions.php",
+            "libs/actions.php",
+            "libs/filters.php"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}

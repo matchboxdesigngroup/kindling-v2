@@ -1,0 +1,1 @@
+/Users/dholloran/Sites/kindling/wp-content/plugins/query-monitor/wp-content/db.php
