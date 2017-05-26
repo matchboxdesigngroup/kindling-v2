@@ -104,4 +104,5 @@ npm-debug.log
 /wp-content/db.php
 /wp-content/plugins/*
 !/wp-content/plugins/kindling-packages
+!/wp-content/plugins/kindling-development
 !/wp-content/plugins/kindling-post-types
