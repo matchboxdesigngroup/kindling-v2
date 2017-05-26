@@ -19,13 +19,13 @@ function kdev_check_hosts($hosts = [])
     // Check the possible HTTP hosts against the current HTTP host.
     if (in_array($current, $hosts)) {
         return true;
-    } // if()
+    }
 
     // Check the possible HTTP hosts against the current HTTP host.
     foreach ($hosts as $host) {
         if (false !== strpos($current, $host)) {
             return true;
-        } // if()
+        }
     } // foreach
 
     return false;
@@ -38,7 +38,7 @@ function kdev_check_hosts($hosts = [])
  * <code>
  * if (kdev_is_localhost()) {
  *  // Do something localhost specific...
- * } // if()
+ * }
  * </code
  *
  * @return  boolean If the current HTTP host is localhost.
@@ -143,7 +143,7 @@ if (!function_exists('pp')) {
             echo '</pre>';
         }
     } // pp()
-} // if()
+}
 
 if (! function_exists('dd')) {
     /**
@@ -162,4 +162,63 @@ if (! function_exists('dd')) {
         pp($values);
         die();
     } // dd()
-} // if()
+}
+
+/**
+ * If the environment bar should be displayed.
+ *
+ * @return boolean True if the bar should be displayed and false if not
+ */
+function kdev_display_environment_bar()
+{
+    return apply_filters( 'kdev_display_environment_bar', ! kdev_is_production() );
+}
+
+/**
+ * Adds the environment bar.
+ */
+function kdev_environment_bar()
+{
+    if (kdev_display_environment_bar()) {
+        require_once KDEV_PLUGIN_DIR_PATH . '/views/environment-bar.php';
+    }
+}
+
+/**
+ * Adds the environment bar styles.
+ */
+function kdev_environment_bar_styles()
+{
+    if (kdev_display_environment_bar()) {
+        $url = KDEV_PLUGIN_URL . '/assets/kdev-environment-bar.css';
+        wp_enqueue_style('kindling-development/css', $url, false, KDEV_VERSION);
+    }
+}
+
+/**
+ * Adds the environment bar body class.
+ *
+ * @param  array|string $classes The current classes.
+ *
+ * @return array|string          An array of classes if passed in as an array and a string if passed in as a string.
+ */
+function kdev_environment_bar_body_class($classes)
+{
+    if (! kdev_display_environment_bar()) {
+        return $classes;
+    }
+
+    $env_type = kdev_get_environment_type();
+    $bar_classes = [
+        'kdev-environment-bar-enabled',
+        "kdev-environment-{$env_type}",
+    ];
+
+    if (is_string($classes)) {
+        $classes .= trim(' ' . implode( ' ', $bar_classes ));
+    } elseif (is_array($classes)) {
+        $classes = array_merge($classes, $bar_classes);
+    }
+
+    return $classes;
+}

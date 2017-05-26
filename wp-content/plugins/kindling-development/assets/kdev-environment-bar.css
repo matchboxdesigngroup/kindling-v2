@@ -1,0 +1,30 @@
+body.mdg-environment-bar-enabled {
+	padding-top: 24px;
+}
+
+.mdg-environment-bar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background-color: #d9534f;
+	height: 24px;
+	font-size: 14px;
+	color: #fff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: uppercase;
+	white-space: nowrap;
+	overflow: hidden;
+	z-index: 9999;
+}
+
+.admin-bar .mdg-environment-bar {
+	top: 32px;
+}
+
+.mdg-environment-bar-message {
+	display: inline-block;
+	margin-right: 10px;
+}
