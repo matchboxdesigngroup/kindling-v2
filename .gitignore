@@ -60,7 +60,6 @@ wp-content/mysql.sql
 /wp-content/index.php
 /wp-content/themes/twentyten
 /wp-content/themes/index.php
-/wp-content/plugins/index.php
 
 # large/disallowed file types
 # a CDN should be used for these
@@ -99,8 +98,9 @@ wp-content/mysql.sql
 
 wp-content/themes/twenty*
 wp-content/themes/index.php
-wp-content/plugins/index.php
 bower_components
 node_modules
 npm-debug.log
 /wp-content/db.php
+/wp-content/plugins/*
+!/wp-content/plugins/kindling-packages

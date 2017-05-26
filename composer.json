@@ -1,0 +1,24 @@
+{
+    "name": "matchboxdesigngroup/kindling",
+    "description": "Shared packages for the kindling base theme.",
+    "keywords": [],
+    "license": "GPL-3.0",
+    "type": "project",
+    "require": {
+        "tightenco/collect": "^5.4",
+        "nesbot/carbon": "^1.22",
+        "fzaninotto/faker": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kindling\\PostType\\": "wp-content/plugins/kindling-post-types/src"
+        },
+        "files": [
+            "wp-content/plugins/kindling-post-types/libs/loader.php",
+            "wp-content/plugins/kindling-development/libs/loader.php"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist"
+    }
+}
