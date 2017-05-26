@@ -103,3 +103,4 @@ wp-content/plugins/index.php
 bower_components
 node_modules
 npm-debug.log
+/wp-content/db.php
