@@ -19,8 +19,6 @@ $sage_includes = [
 	'lib/customizer.php',           // Theme customizer.
 	'lib/navwalker.php',            // Bootstap Nav Walker.
 	'lib/shortcodes.php',           // Shortcodes.
-	'lib/debug/debug.php',          // Debug.
-	'lib/debug/environment-bar.php',
 	'lib/actions.php',              // Actions.
 	'lib/filters.php',              // Filters.
 	'lib/image-sizes.php',          // Image sizes.
