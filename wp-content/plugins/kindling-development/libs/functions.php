@@ -159,7 +159,10 @@ if (! function_exists('dd')) {
      */
     function dd(...$values)
     {
-        pp($values);
+        foreach ($values as $value) {
+            pp($value);
+        }
+
         die();
     } // dd()
 }
@@ -171,7 +174,12 @@ if (! function_exists('dd')) {
  */
 function kdev_display_environment_bar()
 {
-    return apply_filters( 'kdev_display_environment_bar', ! kdev_is_production() );
+    /**
+    * Allows for filtering if the environment bar should be displayed or not.
+    *
+    * @param  boolean
+    */
+    return apply_filters('kdev_display_environment_bar', !kdev_is_production());
 }
 
 /**
@@ -221,4 +229,50 @@ function kdev_environment_bar_body_class($classes)
     }
 
     return $classes;
+}
+
+/**
+ * Adds possible site links such as staging, production, etc.
+ *
+ * @param  WP_Admin_Bar $admin_bar
+ */
+function kdev_add_site_links($admin_bar)
+{
+    /**
+    * Allows for filtering of the site links.
+    *
+    * @param  array
+    */
+    $sites = apply_filters('kdev_toolbar_site_links', [
+        'Production' => '#',
+        'Staging' => '#',
+    ]);
+    dd('FINSIH SITE LINKS');
+
+    if (!array_filter($sites)) {
+        return;
+    }
+
+    $admin_bar->add_menu([
+        'id'    => 'kdev-links',
+        'title' => 'Sites',
+        'href'  => '#',
+        'meta'  => [
+            'title' => __('Site Links'),
+        ],
+    ]);
+
+    foreach ($sites as $label => $link) {
+        $admin_bar->add_menu( [
+            'id' => 'kdev_link_' . str_replace('-', '_', sanitize_title($label)),
+            'parent' => 'kdev-links',
+            'title' => $label,
+            'href'  => $link,
+            'meta'  => [
+                'title' => __($label),
+                'target' => '_blank',
+                'class' => 'kdev-link-' . sanitize_title($label)
+            ],
+        ]);
+    }
 }
