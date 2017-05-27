@@ -7,21 +7,60 @@ namespace Composer\Autoload;
 class ComposerStaticInited0baa2f771a1f802346917bbe40538a
 {
     public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '7ba3c774c30c8399e359b5ff7f3b943e' => __DIR__ . '/..' . '/tightenco/collect/src/Illuminate/Support/helpers.php',
         'f95af724af424d6ba462e66ae0acba6b' => __DIR__ . '/../..' . '/wp-content/plugins/kindling-post-types/libs/loader.php',
         'be11668d66b36566a27b0ec92bcd97a8' => __DIR__ . '/../..' . '/wp-content/plugins/kindling-development/libs/loader.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Component\\Translation\\' => 30,
+        ),
         'K' => 
         array (
             'Kindling\\PostTypes\\' => 19,
         ),
+        'I' => 
+        array (
+            'Illuminate\\' => 11,
+        ),
+        'F' => 
+        array (
+            'Faker\\' => 6,
+        ),
+        'C' => 
+        array (
+            'Carbon\\' => 7,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Component\\Translation\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/translation',
+        ),
         'Kindling\\PostTypes\\' => 
         array (
             0 => __DIR__ . '/../..' . '/wp-content/plugins/kindling-post-types/src',
+        ),
+        'Illuminate\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tightenco/collect/src/Illuminate',
+        ),
+        'Faker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
+        ),
+        'Carbon\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
         ),
     );
 
