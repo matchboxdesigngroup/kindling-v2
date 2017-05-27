@@ -2,373 +2,262 @@
 /**
  * Kindling Type Base Class.
  *
- * @package Kindling
+ * @package Kindling_Post_Types
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
 namespace Kindling\PostTypes;
 
-use Kindling\PostTypes\PostTable\ImageColumn;
+use Kindling\PostTypes\HasArgumentMerge;
+use Kindling\PostTypes\HasImageColumn;
 
 /**
- * This is a base for custom post type classes so they can all take advantage of the same logic.
+ * This is a base for custom post type classes so they can all take advantage of the same logic and defaults.
  *
- * You should do your best not to overwrite any method and to use the
- * custom_[some_property] properties for configuring the base class methods which have parameters.
- * Feel free to over write any of the parameters you see fit to make the sub-classes
- * more versatile.
+ * @example src/Type/Stub.php
  *
- * @package    WordPress
- * @subpackage Kindling
- *
- * @author Matchbox Design Group <info@matchboxdesigngroup.com>
- *
- * @example lib/post-types/type-stub.php
+ * @todo Write tests
+ * @todo Split out post type registration.
+ * @todo Split out taxonomy registration.
  */
 
 abstract class Base
 {
-    use ImageColumn;
+    use HasImageColumn, HasArgumentMerge;
+
+    /**
+     * The slug of the post types landing page if not post type archive.
+     *
+     * @var string
+     */
+    public $landingPageSlug;
+
+    /**
+     * The slug of the post types landing page template if not post type archive.
+     *
+     * @var string
+     */
+    public $landingPageTemplate;
 
     /**
      * Slug for post type.
      *
      * @var string
      */
-    public $post_type;
+    public $postType;
 
     /**
      * Title of post type.
      *
      * @var string
      */
-    public $post_type_title;
+    public $titlePlural;
 
     /**
      * Singular title.
      *
      * @var string
      */
-    public $post_type_single;
-
-    /**
-     * Arguments to be used when registering the post type's taxonomy.
-     *
-     * @var array
-     */
-    protected $taxonomy_args;
-
-
-    /**
-     * Arguments to be used when registering the post type.
-     *
-     * @var array
-     */
-    protected $post_type_args;
-
-    /**
-     * What the post type supports.
-     *
-     * @var array
-     */
-    protected $post_type_supports;
-
-    /**
-     * The post types custom labels used in registerPostType().
-     *
-     * @var array
-     */
-    public $custom_post_type_labels;
-
-    /**
-     * Used to disable the addition of the featured image column.
-     *
-     * @var boolean
-     */
-    public $disable_image_column = false;
-
-    /**
-     * Custom post type arguments used in registerPostType().
-     *
-     * @var array
-     */
-    public $custom_post_type_args;
+    public $titleSingular;
 
     /**
      * The taxonomy "name" used in register_taxonomy().
      *
      * @var array
      */
-    public $taxonomy_name;
+    public $taxonomy;
 
     /**
-     * Custom taxonomy labels used in register_taxonomy().
-     *
-     * @var array
-     */
-    public $custom_taxonomy_labels;
-
-    /**
-     * Custom taxonomy arguments used in register_taxonomy().
-     *
-     * @var array
-     */
-    public $custom_taxonomy_args;
-
-    /**
-     * Custom post type supports array used in registerPostType().
-     *
-     * @var array
-     */
-    public $custom_post_type_supports;
-
-    /**
-     * Disable/Enable Categories per post type.
+     * If the post type registration should be disabled.
      *
      * @var boolean
      */
-    public $disable_post_type_taxonomy;
+    protected $disableRegistration = false;
 
     /**
-     * Disable/Enable thumbnail post table column.
+     * If the taxonomy registration should be disabled.
      *
      * @var boolean
      */
-    public $disable_thumbnail_column;
+    protected $disableTaxonomy = false;
 
     /**
      * Class constructor, takes care of all the setup needed.
      *
-     * @param string $post_type        The post type id.
-     * @param string $post_type_title  The post type plural title.
-     * @param string $post_type_single The post type singular title.
+     * @param string $postType The post type id.
+     * @param string $titlePlural The post type plural title.
+     * @param string $titleSingular The post type singular title.
      */
-    public function __construct($post_type, $post_type_title, $post_type_single)
+    public function __construct($postType, $titlePlural, $titleSingular)
     {
-        $this->post_type = $post_type;
-        $this->post_type_title = $post_type_title;
-        $this->post_type_single = $post_type_single;
-
-        $this->setProperties();
-        $this->typeBaseAddActions();
+        $this->postType = $postType;
+        $this->titlePlural = $titlePlural;
+        $this->titleSingular = $titleSingular;
+        $this->taxonomy = "{$this->postType}-categories";
+        $this->landingPageSlug = "{$this->postType}s";
+        $this->landingPageTemplate = "template-{$this->postType}";
     }
 
     /**
-     * Sets a default value for a variable.
+     * Sets up the post type.
      *
-     * @param mixed $check_value   The value to check if it is set.
-     * @param mixed $default_value The default value to be used if $check_value has not already been set.
-     *
-     * @return mixed                   The $check_value if it is set and the $default_value if not.
+     * @return Kindling\PostTypes\Base
      */
-    public function setDefault($check_value, $default_value)
+    public function init()
     {
-        return (isset($check_value)) ? $check_value : $default_value;
-    } // setDefault()
-
-    /**
-     * Sets all of the classes parameters
-     *
-     * @todo Make this cleaner
-     */
-    protected function setProperties()
-    {
-        $this->set_taxonomy_properties();
-        $this->setPostTypeProperties();
-    } // setProperties()
-
-    /**
-     * Sets the post type properties.
-     */
-    protected function setPostTypeProperties()
-    {
-        // Post Type.
-        $this->post_type_args = $this->setDefault($this->post_type_args, []);
-        $this->custom_post_type_args = $this->setDefault($this->custom_post_type_args, []);
-        $this->custom_post_type_labels = $this->setDefault($this->custom_post_type_labels, []);
-        $this->custom_post_type_supports = $this->setDefault($this->custom_post_type_supports, []);
-        $this->setPostTypeSupports($this->custom_post_type_supports);
-        $this->setPostTypeArgs($this->custom_post_type_args);
-    }
-
-    /**
-     * Sets the taxonomy properties.
-     */
-    protected function setTaxonomyProperties()
-    {
-        $this->taxonomy_args = $this->setDefault($this->taxonomy_args, []);
-        $this->custom_taxonomy_labels = $this->setDefault($this->custom_taxonomy_labels, []);
-        $this->custom_taxonomy_args = $this->setDefault($this->custom_taxonomy_args, []);
-        $this->taxonomy_name = $this->setDefault($this->taxonomy_name, "{$this->post_type}-categories");
-        $this->setTaxonomyArgs($this->custom_taxonomy_args);
-        $this->disable_post_type_taxonomy = $this->setDefault($this->disable_post_type_taxonomy, false);
-    }
-
-    /**
-     * Actions that need to be set for this base class only using add_action()
-     * sub-classes will need to set there own actions without overriding this method.
-     */
-    protected function typeBaseAddActions()
-    {
-        // Create post type.
-        add_action('init', [ &$this, 'registerPostType' ]);
+        // Create post type and taxonomy.
+        $this->register();
 
         // Featured image column action.
-        add_action('init', function () {
-            $this->add_image_column_action($this->post_type, $this->disable_image_column);
-        });
-    }
+        $this->addImageColumnAction($this->postType);
 
-    /**
-     * Sets the Post Type support array
-     *
-     * @link https://codex.wordpress.org/Function_Reference/post_type_supports
-     *
-     * @param array $custom_post_type_supports What the current post type should support.
-     */
-    public function setPostTypeSupports($custom_post_type_supports)
-    {
-        $default_post_type_supports = [
-            'title',
-            'editor',
-            'post-thumbnails',
-            'custom-fields',
-            'page-attributes',
-            'author',
-            'thumbnail',
-            'excerpt',
-            'trackbacks',
-            'comments',
-            'revisions',
-            'post-formats',
-        ];
-
-        if (! empty($custom_post_type_supports)) {
-            $this->post_type_supports = $custom_post_type_supports;
-        } else {
-            $this->post_type_supports = $default_post_type_supports;
-        }
+        return $this;
     }
 
     /**
      * Registers the post type and a custom taxonomy for the post type..
      */
-    public function registerPostType()
+    protected function register()
     {
-        if (post_type_exists($this->post_type)) {
-            return;
+        // Register post type
+        if (!post_type_exists($this->postType) && !$this->disableRegistration) {
+            register_post_type($this->postType, $this->baseArguments());
         }
 
-        // Register post type.
-        register_post_type($this->post_type, $this->post_type_args);
-
-        // Register taxonomy for post type.
-        if (! $this->disable_post_type_taxonomy) {
-            register_taxonomy($this->taxonomy_name, [ $this->post_type ], $this->taxonomy_args);
+        // Register taxonomy
+        if (!$this->disableTaxonomy && !taxonomy_exists($this->taxonomy) && !$this->disableRegistration) {
+            register_taxonomy($this->taxonomy, [ $this->postType ], $this->baseTaxonomyArguments());
         }
     }
 
     /**
-     * Sets the arguments used for registering the post type with registerPostType()
+     * Gets the arguments used for registering the post type with register()
      *
-     * @see http://codex.wordpress.org/Function_Reference/registerPostType
+     * @see http://codex.wordpress.org/Function_Reference/register
      *
-     * @param array $custom_post_type_args Optional. Anything acceptable in the $args parameter for registerPostType().
+     * @return array
      */
-    public function setPostTypeArgs($custom_post_type_args = [])
+    protected function baseArguments()
     {
-        $lowercase_post_type_title = strtolower($this->post_type_title);
-        $lowercase_post_type_single = strtolower($this->post_type_single);
-        $default_post_type_labels = [
-            'name' => __($this->post_type_title),
-            'singular_name' => __($this->post_type_single),
-            'add_new' => __("Add New {$this->post_type_single}"),
-            'add_new_item' => __("Add New {$this->post_type_single}"),
-            'edit_item' => __("Edit {$this->post_type_single}"),
-            'new_item' => __("New {$this->post_type_single}"),
-            'all_items' => __("All {$this->post_type_title}"),
-            'view_item' => __("View {$this->post_type_single}"),
-            'search_items' => __("Search {$this->post_type_title}"),
-            'not_found' => __("No {$lowercase_post_type_title} found"),
-            'not_found_in_trash' => __("No {$lowercase_post_type_title} found in Trash"),
-            'parent_item_colon' => __(''),
-            'menu_name' => __($this->post_type_title),
-            'featured_image' => __("{$this->post_type_single} Image"),
-            'set_featured_image' => __("Set {$lowercase_post_type_single} image"),
-            'remove_featured_image' => __("Remove {$lowercase_post_type_single} image"),
-            'use_featured_image' => __("Use as {$lowercase_post_type_single} image"),
-        ];
+        // Lowercase Labels
+        $lcTitlePlural = strtolower($this->titlePlural);
+        $lcTitleSingular = strtolower($this->titleSingular);
 
-        $labels = array_merge($default_post_type_labels, $this->custom_post_type_labels);
-        $default_post_type_args = [
-            'labels' => $labels,
+        return $this->typeArgumentMerge([
+            'labels' => [
+                'name' => __($this->titlePlural),
+                'singular_name' => __($this->titleSingular),
+                'add_new' => __("Add New {$this->titleSingular}"),
+                'add_new_item' => __("Add New {$this->titleSingular}"),
+                'edit_item' => __("Edit {$this->titleSingular}"),
+                'new_item' => __("New {$this->titleSingular}"),
+                'all_items' => __("All {$this->titlePlural}"),
+                'view_item' => __("View {$this->titleSingular}"),
+                'search_items' => __("Search {$this->titlePlural}"),
+                'not_found' => __("No {$lcTitlePlural} found"),
+                'not_found_in_trash' => __("No {$lcTitlePlural} found in Trash"),
+                'parent_item_colon' => __(''),
+                'menu_name' => __($this->titlePlural),
+                'featured_image' => __("{$this->titleSingular} Image"),
+                'set_featured_image' => __("Set {$lcTitleSingular} image"),
+                'remove_featured_image' => __("Remove {$lcTitleSingular} image"),
+                'use_featured_image' => __("Use as {$lcTitleSingular} image"),
+            ],
             'public' => true,
             'publicly_queryable' => true,
             'show_ui' => true,
             'show_in_menu' => true,
             'query_var' => true,
-            'rewrite' => array('slug' => $this->post_type, 'with_front' => false),
+            'rewrite' => [
+                'slug' => "{$this->postType}s",
+                'with_front' => false
+            ],
             'capability_type' => 'post',
             'has_archive' => false,
             'hierarchical' => true,
             'menu_position' => 5,
             'can_export' => true,
-            'supports' => $this->post_type_supports,
+            'supports' => [
+                'title',
+                'editor',
+                'post-thumbnails',
+                'custom-fields',
+                'page-attributes',
+                'author',
+                'thumbnail',
+                'excerpt',
+                'trackbacks',
+                'comments',
+                'revisions',
+                'post-formats',
+            ],
             'menu_icon' => 'dashicons-edit',
-        ];
-
-        $this->post_type_args = array_merge($default_post_type_args, $custom_post_type_args);
-    } // setPostTypeArgs()
+        ], $this->arguments());
+    }
 
     /**
-     * Sets the taxonomy args when registering a taxonomy using register_taxonomy()
+     * The post type arguments.
+     * Overwrite this method in a sub-class to overwrite default post type arguments.
+     *
+     * @return array
+     */
+    protected function arguments()
+    {
+        return [];
+    }
+
+    /**
+     * Gets the taxonomy arguments when registering a taxonomy using register_taxonomy()
      *
      * @see http://codex.wordpress.org/Function_Reference/register_taxonomy
-     *
-     * @param array $custom_taxonomy_args Optional. Anything acceptable in the $args parameter for register_taxonomy().
+     * @return array
      */
-    public function setTaxonomyArgs($custom_taxonomy_args = [])
+    protected function baseTaxonomyArguments()
     {
-        // Taxonomy labels.
-        $default_labels = [
-            'name' => _x("{$this->post_type_single} Categories", 'taxonomy general name'),
-            'singular_name' => _x("{$this->post_type_single} Category", 'taxonomy singular name'),
-            'search_items' => __("Search {$this->post_type_single} Categories"),
-            'all_items' => __("All {$this->post_type_single} Categories"),
-            'parent_item' => __("Parent {$this->post_type_single} Category"),
-            'parent_item_colon' => __("Parent {$this->post_type_single} Category:"),
-            'edit_item' => __("Edit {$this->post_type_single} Category"),
-            'update_item' => __("Update {$this->post_type_single} Category"),
-            'add_new_item' => __("Add New {$this->post_type_single} Category"),
-            'new_item_name' => __("New {$this->post_type_single} Category Name"),
-            'menu_name' => __("{$this->post_type_single} Categories"),
-            'view_item' => __("View {$this->post_type_single} Category"),
-            'popular_items' => __("Popular {$this->post_type_single} Categories"),
-            'separate_items_with_commas' => __("Separate {$this->post_type_single} Categories with commas"),
-            'add_or_remove_items' => __("Add or remove  {$this->post_type_single} Categories"),
-            'choose_from_most_used' => __("Choose from the most used {$this->post_type_single} Categories"),
-            'not_found' => __("No  {$this->post_type_single} Categories found."),
-        ];
-        $labels = array_merge($default_labels, $this->custom_taxonomy_labels);
-
-        // Register taxonomy.
-        $default_taxonomy_args = [
+        return $this->taxonomyArgumentMerge([
             'hierarchical' => true,
-            'labels' => $labels,
+            'labels' => [
+                'name' => _x("{$this->titleSingular} Categories", 'taxonomy general name'),
+                'singular_name' => _x("{$this->titleSingular} Category", 'taxonomy singular name'),
+                'search_items' => __("Search {$this->titleSingular} Categories"),
+                'all_items' => __("All {$this->titleSingular} Categories"),
+                'parent_item' => __("Parent {$this->titleSingular} Category"),
+                'parent_item_colon' => __("Parent {$this->titleSingular} Category:"),
+                'edit_item' => __("Edit {$this->titleSingular} Category"),
+                'update_item' => __("Update {$this->titleSingular} Category"),
+                'add_new_item' => __("Add New {$this->titleSingular} Category"),
+                'new_item_name' => __("New {$this->titleSingular} Category Name"),
+                'menu_name' => __("{$this->titleSingular} Categories"),
+                'view_item' => __("View {$this->titleSingular} Category"),
+                'popular_items' => __("Popular {$this->titleSingular} Categories"),
+                'separate_items_with_commas' => __("Separate {$this->titleSingular} Categories with commas"),
+                'add_or_remove_items' => __("Add or remove  {$this->titleSingular} Categories"),
+                'choose_from_most_used' => __("Choose from the most used {$this->titleSingular} Categories"),
+                'not_found' => __("No  {$this->titleSingular} Categories found."),
+            ],
             'public' => true,
             'show_in_nav_menus' => true,
             'show_ui' => true,
             'show_tagcloud' => true,
             'show_admin_column' => true,
-            'query_var' => $this->taxonomy_name,
+            'query_var' => $this->taxonomy,
             'rewrite' => [
-                'slug' => $this->post_type,
+                'slug' => "{$this->postType}-categories",
                 'with_front' => false,
                 'hierarchical' => true,
             ],
-        ];
+        ], $this->taxonomyArguments());
+    }
 
-        $this->taxonomy_args = array_merge($default_taxonomy_args, $custom_taxonomy_args);
+    /**
+     * The taxonomy arguments.
+     * Overwrite this method in a sub-class to overwrite default taxonomy arguments.
+     *
+     * @return array
+     */
+    protected function taxonomyArguments()
+    {
+        return [];
     }
 
     /**
@@ -376,28 +265,51 @@ abstract class Base
      *
      * @see http://codex.wordpress.org/Class_Reference/WP_Query
      *
-     * @param array   $custom_query_args Optional. Any arguments accepted by the WP_Query class.
-     * @param boolean $query_object      Optional. If true it will return the WP_Query object instead of posts.
+     * @param array   $arguments Optional. Any arguments accepted by the WP_Query class.
+     * @param boolean $getQuery  Optional. If true it will return the WP_Query object instead of posts.
      *
-     * @return array                       Retrieved post objects/Query object.
+     * @return array Retrieved post objects/Query object.
      */
-    public function getPosts($custom_query_args = [], $query_object = false)
+    public function getPosts($arguments = [], $getQuery = false)
     {
-        $default_query_args = [
-            'post_type'=> $this->post_type,
-            'posts_per_page' => -1,
+        $query = new WP_Query(array_merge([
+            'post_type'=> $this->postType,
+            'posts_per_page' => 500,
             'post_status'=> 'publish',
             'order' => 'DESC',
             'orderby' => 'date',
-        ];
-        $query_args = array_merge($default_query_args, $custom_query_args);
-        $query = new WP_Query($query_args);
-        $posts = $query->get_posts();
+        ], $arguments));
 
-        if ($query_object) {
-            return $query;
-        }
-
-        return $posts;
+        return $getQuery ? $query : $query->get_posts();
     }
-} // END Class Base()
+
+    /**
+     * Sets Disables post type registration.
+     *
+     * @param boolean $disable
+     */
+    protected function setDisableRegistration($disable)
+    {
+        $this->disableRegistration = (bool) $disable;
+    }
+
+    /**
+     * Sets Disables post type taxonomy.
+     *
+     * @param boolean $disable
+     */
+    protected function setDisableTaxonomy($disable)
+    {
+        $this->disableTaxonomy = (bool) $disable;
+    }
+
+    /**
+     * Sets taxonomy slug.
+     *
+     * @param string $disable
+     */
+    protected function setTaxonomy($slug)
+    {
+        $this->taxonomy = $slug;
+    }
+}
