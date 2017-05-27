@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Kindling\\PostType\\' => array($baseDir . '/wp-content/plugins/kindling-post-types/src'),
+    'Kindling\\PostTypes\\' => array($baseDir . '/wp-content/plugins/kindling-post-types/src'),
 );

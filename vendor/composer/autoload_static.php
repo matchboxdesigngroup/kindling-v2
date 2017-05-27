@@ -14,12 +14,12 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
     public static $prefixLengthsPsr4 = array (
         'K' => 
         array (
-            'Kindling\\PostType\\' => 18,
+            'Kindling\\PostTypes\\' => 19,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Kindling\\PostType\\' => 
+        'Kindling\\PostTypes\\' => 
         array (
             0 => __DIR__ . '/../..' . '/wp-content/plugins/kindling-post-types/src',
         ),
