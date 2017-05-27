@@ -244,10 +244,9 @@ function kdev_add_site_links($admin_bar)
     * @param  array
     */
     $sites = apply_filters('kdev_toolbar_site_links', [
-        'Production' => '#',
-        'Staging' => '#',
+        'Production' => '',
+        'Staging' => '',
     ]);
-    dd('FINSIH SITE LINKS');
 
     if (!array_filter($sites)) {
         return;
