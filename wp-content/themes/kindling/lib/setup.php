@@ -53,7 +53,7 @@ function mdg_theme_setup() {
 
   // Use main stylesheet for visual editor
   // To add custom styles edit /assets/styles/layouts/_tinymce.scss
-  add_editor_style(Assets\asset_path('styles/main.css'));
+  add_editor_style(Assets\asset_path('main.css'));
 }
 add_action('after_setup_theme', 'mdg_theme_setup');
 
@@ -96,13 +96,13 @@ function mdg_assets() {
   $theme         = wp_get_theme();
 	$theme_version = $theme->get( 'Version' );
 
-  wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), false, $theme_version);
+  wp_enqueue_style('sage/css', Assets\asset_path('main.css'), false, $theme_version);
 
   if (is_single() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
   }
 
-  wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], $theme_version, true);
+  wp_enqueue_script('sage/js', Assets\asset_path('main.js'), ['jquery'], $theme_version, true);
 }
 add_action('wp_enqueue_scripts', 'mdg_assets', 100);
 
@@ -112,6 +112,6 @@ add_action('wp_enqueue_scripts', 'mdg_assets', 100);
 function mdg_admin_assets() {
 	$version = wp_get_theme()->get( 'Version' );
 
-  wp_enqueue_style('sage/css', Assets\asset_path('styles/main-admin.css'), false, $version);
+  wp_enqueue_style('sage/css', Assets\asset_path('main-admin.css'), false, $version);
 }
 add_action('admin_enqueue_scripts', 'mdg_admin_assets', 100);
