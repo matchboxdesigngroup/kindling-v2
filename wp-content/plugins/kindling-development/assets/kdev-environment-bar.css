@@ -1,8 +1,8 @@
-body.mdg-environment-bar-enabled {
+body.kdev-environment-bar-enabled {
 	padding-top: 24px;
 }
 
-.mdg-environment-bar {
+.kdev-environment-bar {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -20,11 +20,11 @@ body.mdg-environment-bar-enabled {
 	z-index: 9999;
 }
 
-.admin-bar .mdg-environment-bar {
+.admin-bar .kdev-environment-bar {
 	top: 32px;
 }
 
-.mdg-environment-bar-message {
+.kdev-environment-bar-message {
 	display: inline-block;
 	margin-right: 10px;
 }
