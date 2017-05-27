@@ -214,11 +214,9 @@ abstract class Base
         add_action('init', [ &$this, 'registerPostType' ]);
 
         // Featured image column action.
-        add_action(
-            'init', function () {
-                $this->add_image_column_action($this->post_type, $this->disable_image_column);
-            }
-        );
+        add_action('init', function () {
+            $this->add_image_column_action($this->post_type, $this->disable_image_column);
+        });
     }
 
     /**
