@@ -10,7 +10,8 @@ return array(
     'Symfony\\Component\\Translation\\' => array($vendorDir . '/symfony/translation'),
     'Kindling\\Theme\\' => array($baseDir . '/wp-content/themes/kindling/src'),
     'Kindling\\PostTypes\\' => array($baseDir . '/wp-content/plugins/kindling-post-types/src'),
-    'Illuminate\\' => array($vendorDir . '/tightenco/collect/src/Illuminate'),
+    'Illuminate\\Support\\' => array($vendorDir . '/illuminate/support'),
+    'Illuminate\\Contracts\\' => array($vendorDir . '/illuminate/contracts'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
 );

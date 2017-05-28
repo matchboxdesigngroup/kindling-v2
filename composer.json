@@ -5,9 +5,10 @@
     "license": "GPL-3.0",
     "type": "project",
     "require": {
-        "tightenco/collect": "^5.4",
         "nesbot/carbon": "^1.22",
-        "fzaninotto/faker": "^1.6"
+        "fzaninotto/faker": "^1.6",
+        "illuminate/support": "^5.4",
+        "illuminate/contracts": "^5.4"
     },
     "autoload": {
         "psr-4": {

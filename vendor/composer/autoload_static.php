@@ -8,7 +8,8 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '7ba3c774c30c8399e359b5ff7f3b943e' => __DIR__ . '/..' . '/tightenco/collect/src/Illuminate/Support/helpers.php',
+        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
         'f95af724af424d6ba462e66ae0acba6b' => __DIR__ . '/../..' . '/wp-content/plugins/kindling-post-types/libs/loader.php',
         'be11668d66b36566a27b0ec92bcd97a8' => __DIR__ . '/../..' . '/wp-content/plugins/kindling-development/libs/loader.php',
     );
@@ -26,7 +27,8 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
         ),
         'I' => 
         array (
-            'Illuminate\\' => 11,
+            'Illuminate\\Support\\' => 19,
+            'Illuminate\\Contracts\\' => 21,
         ),
         'F' => 
         array (
@@ -55,9 +57,13 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
         array (
             0 => __DIR__ . '/../..' . '/wp-content/plugins/kindling-post-types/src',
         ),
-        'Illuminate\\' => 
+        'Illuminate\\Support\\' => 
         array (
-            0 => __DIR__ . '/..' . '/tightenco/collect/src/Illuminate',
+            0 => __DIR__ . '/..' . '/illuminate/support',
+        ),
+        'Illuminate\\Contracts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/contracts',
         ),
         'Faker\\' => 
         array (
@@ -69,11 +75,22 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'D' => 
+        array (
+            'Doctrine\\Common\\Inflector\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
+            ),
+        ),
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInited0baa2f771a1f802346917bbe40538a::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInited0baa2f771a1f802346917bbe40538a::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInited0baa2f771a1f802346917bbe40538a::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }
