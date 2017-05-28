@@ -20,10 +20,10 @@
  *
  * @return  object          The filtered query.
  */
-add_filter( 'pre_get_posts', function ($query) {
+add_filter('pre_get_posts', function ($query) {
     global $wp_filter;
 
-    if (! isset( $wp_filter['pre_get_posts'] ) or is_admin()) {
+    if (! isset($wp_filter['pre_get_posts']) or is_admin()) {
         return $query;
     } // if()
 
@@ -31,31 +31,31 @@ add_filter( 'pre_get_posts', function ($query) {
 
     foreach ($pre_get_posts_filters as $filters_key => $filters) {
         foreach ($filters as $filter_key => $filter) {
-            $correct_filter = ( strpos( $filter_key, 'hicpo_pre_get_posts' ) !== false );
-            $has_function   = isset( $filter['function'] );
+            $correct_filter = (strpos($filter_key, 'hicpo_pre_get_posts') !== false);
+            $has_function   = isset($filter['function']);
 
             if ($correct_filter and $has_function) {
-                remove_filter( 'pre_get_posts', $filter['function'], $filters_key );
+                remove_filter('pre_get_posts', $filter['function'], $filters_key);
             } // if()
         } // foreach()
     } // foreach()
 
 
     return $query;
-}, 0 );
+}, 0);
 
 /**
  * Add <body> classes
  */
 add_filter('body_class', function ($classes) {
-  // Add page slug if it doesn't exist
+    // Add page slug if it doesn't exist
     if (is_single() || is_page() && !is_front_page()) {
         if (!in_array(basename(get_permalink()), $classes)) {
             $classes[] = basename(get_permalink());
         }
     }
 
-  // Add class if sidebar is active
+    // Add class if sidebar is active
     if (kindling_display_sidebar()) {
         $classes[] = 'sidebar-primary';
     }
@@ -70,6 +70,32 @@ add_filter('excerpt_more', function () {
     return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'sage') . '</a>';
 });
 
+/**
+ * Initialize theme wrapper.
+ */
 add_filter('template_include', function ($main) {
     return Kindling\Theme\ThemeWrapper::wrap($main);
 }, 109);
+
+/**
+ * Allow SVG Uploads
+ */
+add_filter('upload_mimes', function ($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+
+    return $mimes;
+});
+
+/**
+ * Enable Gravity Forms visibility settings.
+ */
+add_filter('gform_enable_field_label_visibility_settings', '__return_true');
+
+/**
+ * Add image responsive to all attachment images.
+ */
+add_filter('wp_get_attachment_image_attributes', function ($attr, $attachment, $size) {
+    $attr['class'] = isset($attr['class']) ? "{$attr['class']} img-responsive" : 'img-responsive';
+
+    return $attr;
+}, 10, 3);

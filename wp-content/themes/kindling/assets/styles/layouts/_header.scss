@@ -1,0 +1,45 @@
+// ================================
+// Site Header
+// ================================
+.site-header {
+	padding: 15px;
+	background-color: $header-bg;
+	margin-bottom: 0;
+
+	@include bp-screen-sm {
+		padding-left: 0;
+		padding-right: 0;
+	} // @include bp-screen-sm
+} // .site-header
+
+// ================================
+// Navbar Header
+// ================================
+.navbar-header {
+	display: flex;
+	align-items: center;
+} // .navbar-header
+
+// ================================
+// Logo
+// ================================
+.site-logo-wrap {
+	flex: 1;
+} // .site-logo-wrap
+
+.site-logo-link {
+	display: block;
+	float: left;
+}
+
+// ================================
+// Navbar Toggle
+// ================================
+.navbar-toggle {
+	border: 1px solid $theme1;
+	margin: 0;
+
+	.icon-bar {
+		background-color: $theme1;
+	} // .icon-bar
+} // .navbar-toggle

@@ -1,4 +1,26 @@
-.cl,
-.clear {
-	clear: both;
-} // .cl, .clear
+// ==========================================
+// Base Wrappers
+// ==========================================
+html,
+body,
+.body-bg {
+    height: 100%;
+}
+
+.body-bg {
+	background-color: $footer-bg;
+} // .body-bg
+
+.content-bg {
+	background-color: $content-bg;
+	color: $font-color;
+} // .content-bg
+
+.site-wrap {
+	padding-top: 20px;
+	padding-bottom: 40px;
+} // .site-wrap
+
+body {
+	@include font-main;
+}

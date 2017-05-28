@@ -1,0 +1,59 @@
+// ========================================
+// Gravity Form Wrapper
+// ========================================
+.gform_wrapper {
+	ul {
+		@extend .list-unstyled;
+	} // ul
+
+	label {
+		font-weight: 400;
+		color: $theme1;
+	} // label
+} // .gform_wrapper
+
+// ========================================
+// Gravity Form Fields
+// ========================================
+.gfield {
+	margin-bottom: 20px;
+
+	input,
+	select,
+	textarea {
+		width: 100%;
+		color: $color2;
+		font-weight: 600;
+		line-height: 18px;
+		padding: 15px 25px;
+		border-radius: 5px;
+		border: 1px solid $color2;
+	}
+
+	select {
+		height: 48px;
+		background-color: $color2;
+	} // select
+
+	textarea {
+		height: 210px;
+		resize: vertical;
+	} // textarea
+
+	input[type="radio"],
+	input[type="checkbox"] {
+		width: auto;
+		height: auto;
+		border: 0;
+		margin-right: 15px;
+	} // input[type="radio"],input[type="checkbox"]
+}
+
+// ========================================
+// Gravity Form Labels
+// ========================================
+.gfield_label {
+	.hidden_label & {
+		display: none;
+	} // .hidden_label &
+} // .gfield_label

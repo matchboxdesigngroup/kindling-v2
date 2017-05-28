@@ -5,24 +5,27 @@
 // ===================================
 @import "vendor/bootstrap";
 // @import "vendor/flexslider";
+// @import "vendor/font-awesome";
 
 // ===================================
 // Common
 // ===================================
-@import "common/global";
 @import "common/mixins";
 @import "common/functions";
 @import "common/fonts";
+@import "common/global";
+@import "common/utilities";
 
 // ===================================
 // Components
 // ===================================
 @import "components/buttons";
 @import "components/comments";
-@import "components/forms";
+@import "components/gravity-forms";
 @import "components/grid";
 @import "components/shortcodes";
 @import "components/wp-classes";
+@import "components/search-form";
 
 // ===================================
 // Layouts

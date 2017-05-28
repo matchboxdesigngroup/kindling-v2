@@ -19,7 +19,10 @@ mix
 .sass('./assets/styles/main-admin.scss', 'dist/')
 .js('./assets/scripts/main.js', 'dist/')
 .js('./assets/scripts/customizer.js', 'dist/')
-.browserSync('kindling.dev')
+.browserSync({
+    proxy: 'kindling.dev',
+    files: ['./dist/**/*', '**/*.php'],
+})
 .sourceMaps();
 
 // Full API

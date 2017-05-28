@@ -1,4 +1,5 @@
 jQuery((function($) {
+    require('./vendor/boostrap.js');
     var site    = {};
 
     /**

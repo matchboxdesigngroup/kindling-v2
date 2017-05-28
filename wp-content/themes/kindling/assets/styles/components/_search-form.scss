@@ -1,0 +1,42 @@
+// ===========================================
+//  Search form
+// ===========================================
+.search-form {
+	@extend .form-inline;
+	position: relative;
+
+	.search-label {
+		@extend .form-group;
+		width: 100%;
+		font-weight: normal;
+		margin: 0;
+	} // .search-label
+
+	.search-field {
+		@extend .form-control;
+		border-radius: 0;
+		border: 2px solid $color1;
+		height: 32px;
+		border-right: none;
+		width: 100%;
+	} // .search-field
+
+	.search-submit {
+		@extend .btn;
+		@extend .btn-default;
+		width: 32px;
+		position: absolute;
+		top: -1px;
+		right: -1px;
+		bottom: -1px;
+		padding: 0;
+		background-color: $theme1;
+		border-radius: 0;
+		color: $color2;
+
+		@include link-interact {
+			background-color: hover($theme1);
+			color: $color2;
+		} // @include link-interact
+	} // .search-submit
+} // .search-form
