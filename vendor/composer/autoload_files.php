@@ -7,8 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
-    '5255c38a0faeba867671b61dfda6d864' => $vendorDir . '/paragonie/random_compat/lib/random.php',
-    '72579e7bd17821bb1321b87411366eae' => $vendorDir . '/illuminate/support/helpers.php',
+    '7ba3c774c30c8399e359b5ff7f3b943e' => $vendorDir . '/tightenco/collect/src/Illuminate/Support/helpers.php',
     'f95af724af424d6ba462e66ae0acba6b' => $baseDir . '/wp-content/plugins/kindling-post-types/libs/loader.php',
     'be11668d66b36566a27b0ec92bcd97a8' => $baseDir . '/wp-content/plugins/kindling-development/libs/loader.php',
 );
