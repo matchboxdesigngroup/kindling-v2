@@ -11,18 +11,18 @@ jQuery((function($) {
      */
     // site.initFlexslider = function() {
     //     require('./../../node_modules/flexslider/jquery.flexslider.js');
-    //  if (typeof $.fn.flexslider !== 'function' ) {
-    //      return;
-    //  } // if()
+    //     if (typeof $.fn.flexslider !== 'function' ) {
+    //         return;
+    //     } // if()
 
-    //  var slider = $('.flexslider');
+    //     var slider = $('.flexslider');
 
-    //  // Check if a slider exists
-    //  if ( slider.length === 0 ) {
-    //      return false;
-    //  }
+    //     // Check if a slider exists
+    //     if ( slider.length === 0 ) {
+    //         return false;
+    //     }
 
-    //  return false;
+    //     return false;
     // }; // site.initFlexslider()
 
     /**
@@ -133,7 +133,6 @@ jQuery((function($) {
      * Window Load
      */
     $(window).load(function() {
-        console.log('test');
         site.initBackToTop();
         // site.initFlexslider();
     });
