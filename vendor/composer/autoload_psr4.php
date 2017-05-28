@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Component\\Translation\\' => array($vendorDir . '/symfony/translation'),
+    'Kindling\\Theme\\' => array($baseDir . '/wp-content/themes/kindling/src'),
     'Kindling\\PostTypes\\' => array($baseDir . '/wp-content/plugins/kindling-post-types/src'),
     'Illuminate\\' => array($vendorDir . '/tightenco/collect/src/Illuminate'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),

@@ -2,11 +2,11 @@
 /**
  * Image Sizes Class.
  *
- * @package Kindling
+ * @package Kindling_Theme
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
-namespace Kindling;
+namespace Kindling\Theme;
 
 /**
  * Handles adding custom image sizes and other global image related functionality.
@@ -16,16 +16,12 @@ class ImageSizes
     /**
      * The available image sizes.
      *
-     * @since Kindling 1.0.2
-     *
      * @var  array
      */
     public static $imagesizes = [];
 
     /**
      * Sets all of the custom image sizes.
-     *
-     * @since Kindling 1.0.2
      */
     public static function getImageSizes()
     {
@@ -45,8 +41,6 @@ class ImageSizes
 
     /**
      * Registers all of the new image sizes for use in our theme
-     *
-     * @since Kindling 1.0.2
      *
      * <code>
      * Self::image_sizes[] = [
@@ -76,8 +70,6 @@ class ImageSizes
     /**
      * Ads the image sizes.
      *
-     * @since Kindling 1.0.2
-     *
      * @param array $sizes The image sizes to add.
      */
     protected static function addSizes($imagesizes)
@@ -100,8 +92,6 @@ class ImageSizes
     /**
      * Adds an image size.
      *
-     * @since Kindling 1.0.2
-     *
      * @param array $size Image size to add.
      */
     protected static function addSize($size)
@@ -116,8 +106,6 @@ class ImageSizes
 
     /**
      * Get the image sizes for the media manager size select.
-     *
-     * @since Kindling 1.0.2
      *
      * @param  array $size Image size to add.
      *

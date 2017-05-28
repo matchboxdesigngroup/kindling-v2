@@ -1,42 +1,23 @@
-<?php
-
-use Roots\Sage\Setup;
-use Roots\Sage\Wrapper;
-
-?>
-
 <!doctype html>
 <html <?php language_attributes(); ?>>
-    <?php get_template_part('templates/head'); ?>
+    <?php get_template_part('templates/layouts/head'); ?>
   <body <?php body_class(); ?>>
-    <!--[if IE]>
-      <div class="alert alert-warning">
-        <?php
-        // @codingStandardsIgnoreStart
-        _e('You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.', 'sage');
-        // @codingStandardsIgnoreEnd
-        ?>
-      </div>
-    <![endif]-->
+    <?php get_template_part('templates/partials/outdated'); ?>
     <?php
       do_action('get_header');
-      get_template_part('templates/header');
+      get_template_part('templates/layouts/header');
     ?>
     <div class="wrap container" role="document">
       <div class="content row">
         <main class="main">
-            <?php include Wrapper\template_path(); ?>
+            <?php include kindling_template_path(); ?>
         </main><!-- /.main -->
-        <?php if (kindling_display_sidebar()) : ?>
-          <aside class="sidebar">
-            <?php include Wrapper\sidebar_path(); ?>
-          </aside><!-- /.sidebar -->
-        <?php endif; ?>
+        <?php include kindling_sidebar_path(); ?>
       </div><!-- /.content -->
     </div><!-- /.wrap -->
     <?php
       do_action('get_footer');
-      get_template_part('templates/footer');
+      get_template_part('templates/layouts/footer');
       wp_footer();
     ?>
   </body>

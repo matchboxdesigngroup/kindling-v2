@@ -1,8 +1,8 @@
 <?php
 /**
  * PHPUnit bootstrap file
- *
- * @package Kindling
+ * @codingStandardsIgnoreStart
+ * @package Kindling_Theme
  */
 
 $_tests_dir = getenv( 'WP_TESTS_DIR' );

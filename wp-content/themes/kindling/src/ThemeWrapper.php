@@ -2,11 +2,11 @@
 /**
  * Template wrapper.
  *
- * @package Kindling
+ * @package Kindling_Theme
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
-namespace Roots\Sage\Wrapper;
+namespace Kindling\Theme;
 
 /**
  * Theme wrapper
@@ -15,17 +15,7 @@ namespace Roots\Sage\Wrapper;
  * @link http://scribu.net/wordpress/theme-wrappers.html
  */
 
-function template_path()
-{
-    return SageWrapping::$main_template;
-}
-
-function sidebar_path()
-{
-    return new SageWrapping('templates/sidebar.php');
-}
-
-class SageWrapping
+class ThemeWrapper
 {
   // Stores the full path to the main template file
     public static $main_template;
@@ -70,7 +60,6 @@ class SageWrapping
             self::$base = false;
         }
 
-        return new SageWrapping();
+        return new ThemeWrapper();
     }
 }
-add_filter('template_include', [__NAMESPACE__ . '\\SageWrapping', 'wrap'], 109);

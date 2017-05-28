@@ -1,3 +1,11 @@
+<?php
+/**
+ * Header template.
+ *
+ * @package Kindling_Theme
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
+ */
+?>
 <header class="banner navbar navbar-static-top" role="banner">
     <div class="container">
         <div class="navbar-header">
@@ -15,7 +23,7 @@
             if (has_nav_menu('primary_navigation')) {
                 wp_nav_menu([
                     'theme_location' => 'primary_navigation',
-                    'walker' => new Kindling\Navwalker\Bootstrap(),
+                    'walker' => new Kindling\Theme\Navwalker\Bootstrap(),
                     'menu_class' => 'nav navbar-nav navbar-hover',
                     'depth' => 2,
                 ]);

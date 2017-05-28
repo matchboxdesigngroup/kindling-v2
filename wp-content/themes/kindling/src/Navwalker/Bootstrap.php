@@ -2,11 +2,11 @@
 /**
  * Bootstrap Navigation Walker.
  *
- * @package Kindling
+ * @package Kindling_Theme
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
-namespace Kindling\Navwalker;
+namespace Kindling\Theme\Navwalker;
 
 /**
  * Class Name: wp_bootstrap_navwalker

@@ -4,7 +4,7 @@
  *
  * @see http://codex.wordpress.org/Shortcode_API
  *
- * @package Kindling
+ * @package Kindling_Theme
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 

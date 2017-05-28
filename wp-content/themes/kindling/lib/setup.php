@@ -2,11 +2,9 @@
 /**
  * Theme setup.
  *
- * @package Kindling
+ * @package Kindling_Theme
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
-
-use Roots\Sage\Assets;
 
 /**
  * Theme setup.

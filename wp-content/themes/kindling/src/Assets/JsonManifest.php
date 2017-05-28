@@ -1,6 +1,6 @@
 <?php
 
-namespace Roots\Sage\Assets;
+namespace Kindling\Theme\Assets;
 
 /**
  * Get paths for assets

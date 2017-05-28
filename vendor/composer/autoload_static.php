@@ -21,6 +21,7 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
         ),
         'K' => 
         array (
+            'Kindling\\Theme\\' => 15,
             'Kindling\\PostTypes\\' => 19,
         ),
         'I' => 
@@ -45,6 +46,10 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
         'Symfony\\Component\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
+        ),
+        'Kindling\\Theme\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/wp-content/themes/kindling/src',
         ),
         'Kindling\\PostTypes\\' => 
         array (

@@ -1,14 +1,17 @@
 <?php
+
+namespace Kindling\Theme\Tests;
+
 /**
  * Class SampleTest
- *
- * @package Kindling
+ * @codingStandardsIgnoreStart
+ * @package Kindling_Theme
  */
 
 /**
  * Sample test case.
  */
-class SampleTest extends WP_UnitTestCase {
+class SampleTest extends \WP_UnitTestCase {
 
 	/**
 	 * A single example test.

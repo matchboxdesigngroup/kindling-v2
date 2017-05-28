@@ -2,7 +2,7 @@
 /**
  * Theme Filters.
  *
- * @package Kindling
+ * @package Kindling_Theme
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
@@ -69,3 +69,7 @@ add_filter('body_class', function ($classes) {
 add_filter('excerpt_more', function () {
     return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'sage') . '</a>';
 });
+
+add_filter('template_include', function ($main) {
+    return Kindling\Theme\ThemeWrapper::wrap($main);
+}, 109);

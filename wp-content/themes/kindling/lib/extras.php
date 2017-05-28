@@ -2,11 +2,9 @@
 /**
  * Theme Custom Functions.
  *
- * @package Kindling
+ * @package Kindling_Theme
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
-
-use Roots\Sage\Assets\JsonManifest;
 
 /**
  * Gets a files asset path.
@@ -24,7 +22,7 @@ function kindling_asset_path($filename)
 
     if (empty($manifest)) {
         $manifest_path = get_template_directory() . '/dist/' . 'assets.json';
-        $manifest = new JsonManifest($manifest_path);
+        $manifest = new Kindling\Theme\Assets\JsonManifest($manifest_path);
     }
 
     if (array_key_exists($file, $manifest->get())) {
@@ -36,8 +34,6 @@ function kindling_asset_path($filename)
 
 /**
  * Retrieves a template from /templates.
- *
- * @since  Kindling 1.0.2
  *
  * @param  string  $path The path to the file in the templates directory.
  * @param  array   $data Optional, Data to pass through to the template. Default none.
@@ -52,8 +48,6 @@ function kindling_template($path, $data = [], $once = false)
 
 /**
  * Loads a template file.
- *
- * @since  Kindling 1.0.2
  *
  * @param  string  $path The path to the file in the templates directory.
  * @param  array   $data Optional, Data to pass through to the template. Default none.
@@ -81,8 +75,6 @@ function kindling_load_template_file($path, $data = [], $once = false)
 /**
  * Locates a file in the template.
  * Defaults to the child theme if active and the template is available.
- *
- * @since  Kindling 1.0.2
  *
  * @param  string $path Path in the directory.
  *
@@ -145,4 +137,24 @@ function kindling_display_sidebar()
     ]);
 
     return apply_filters('sage/display_sidebar', $display);
+}
+
+/**
+ * Gets the path to the page template.
+ *
+ * @return string
+ */
+function kindling_template_path()
+{
+    return Kindling\Theme\ThemeWrapper::$main_template;
+}
+
+/**
+ * Gets the path to the sidebar template.
+ *
+ * @return string
+ */
+function kindling_sidebar_path()
+{
+    return new Kindling\Theme\ThemeWrapper('templates/layouts/sidebar.php');
 }
