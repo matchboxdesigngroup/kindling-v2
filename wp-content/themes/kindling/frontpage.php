@@ -1,0 +1,2 @@
+<?php
+// @todo frontpage.php

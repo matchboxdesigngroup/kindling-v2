@@ -14,11 +14,9 @@
  *
  * @return  string  The divider HTML.
  */
-function mdg_divider_shortcode() {
-	return '<div class="divider"></div>';
-} // mdg_divider_shortcode()
-add_shortcode( 'divider', 'mdg_divider_shortcode' );
-
+add_shortcode('divider', function () {
+    return '<div class="divider"></div>';
+});
 
 /**
  * Creates a 50% column
@@ -39,14 +37,12 @@ add_shortcode( 'divider', 'mdg_divider_shortcode' );
  *
  * @return  string            HTML for 50% column with content.
  */
-function mdg_col_half( $atts, $content ) {
-	$html  = '<div class="col-half fitvid">';
-	$html .= apply_filters( 'the_content', $content );
-	$html .= '</div>';
-	return $html;
-} // mdg_col_half
-add_shortcode( 'col-half','mdg_col_half' );
-
+add_shortcode('col-half', function ($atts, $content) {
+    $html  = '<div class="col-half fitvid">';
+    $html .= apply_filters('the_content', $content);
+    $html .= '</div>';
+    return $html;
+});
 
 /**
  * Creates a 33.3333% column
@@ -71,14 +67,12 @@ add_shortcode( 'col-half','mdg_col_half' );
  *
  * @return  string            HTML for 33.3333% column with content.
  */
-function mdg_col_third( $atts, $content ) {
-	$html  = '<div class="col-third fitvid">';
-	$html .= apply_filters( 'the_content', $content );
-	$html .= '</div>';
-	return $html;
-} // mdg_col_third
-add_shortcode( 'col-third','mdg_col_third' );
-
+add_shortcode('col-third', function ($atts, $content) {
+    $html  = '<div class="col-third fitvid">';
+    $html .= apply_filters('the_content', $content);
+    $html .= '</div>';
+    return $html;
+});
 
 /**
  * Creates a 25% column
@@ -107,14 +101,12 @@ add_shortcode( 'col-third','mdg_col_third' );
  *
  * @return  string            HTML for 25% column with content.
  */
-function mdg_col_quarter( $atts, $content ) {
-	$html  = '<div class="col-quarter fitvid">';
-	$html .= apply_filters( 'the_content', $content );
-	$html .= '</div>';
-	return $html;
-} // mdg_col_quarter
-add_shortcode( 'col-quarter','mdg_col_quarter' );
-
+add_shortcode('col-quarter', function ($atts, $content) {
+    $html  = '<div class="col-quarter fitvid">';
+    $html .= apply_filters('the_content', $content);
+    $html .= '</div>';
+    return $html;
+});
 
 /**
  * Adds a clearing div.
@@ -125,12 +117,11 @@ add_shortcode( 'col-quarter','mdg_col_quarter' );
  *
  * @return  string            The div with .clear.
  */
-function mdg_clear_shortcode( $atts ) {
-	$atts = extract( shortcode_atts( array(),$atts ) );
+add_shortcode('clear', function ($atts) {
+    $atts = extract(shortcode_atts([], $atts));
 
-	return '<div class="clear"></div>';
-} // mdg_clear_shortcode()
-add_shortcode( 'clear','mdg_clear_shortcode' );
+    return '<div class="clear"></div>';
+});
 
 /**
  * Adds row shortcode.
@@ -146,8 +137,7 @@ add_shortcode( 'clear','mdg_clear_shortcode' );
  *
  * @return string           The row HTML.
  */
-function mdg_row_shortcode( $atts, $content ) {
-	$content = apply_filters( 'the_content', $content );
-	return "<div class='row'>{$content}</div>";
-}
-add_shortcode( 'row','mdg_row_shortcode' );
+add_shortcode('row', function ($atts, $content) {
+    $content = apply_filters('the_content', $content);
+    return "<div class='row'>{$content}</div>";
+});

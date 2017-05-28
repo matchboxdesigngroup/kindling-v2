@@ -17,46 +17,47 @@
  *
  * @return  string            The filtered CSS classes separated by empty spaces (i.e. "gfield custom_class").
  */
-add_action( 'gform_field_css_class', function( $classes, $field, $form ){
+add_action( 'gform_field_css_class', function ($classes, $field, $form) {
   // Add the field label class.
-  $label       = ( isset( $field['label'] ) ) ? $field['label'] : '';
-  $admin_label = ( isset( $field['adminLabel'] ) ) ? $field['adminLabel'] : '';
-  $input_slug  = ( '' === $admin_label ) ? $label : $admin_label;
-  $input_slug  = sanitize_title( $input_slug );
-  $classes    .= " gfield-{$input_slug}";
+    $label       = ( isset( $field['label'] ) ) ? $field['label'] : '';
+    $admin_label = ( isset( $field['adminLabel'] ) ) ? $field['adminLabel'] : '';
+    $input_slug  = ( '' === $admin_label ) ? $label : $admin_label;
+    $input_slug  = sanitize_title( $input_slug );
+    $classes    .= " gfield-{$input_slug}";
 
   // Add the field type class.
-  $type     = ( isset( $field['type'] ) ) ? $field['type'] : '';
-  $type     = sanitize_title( $type );
-  $classes .= " gfield-type-{$type}";
+    $type     = ( isset( $field['type'] ) ) ? $field['type'] : '';
+    $type     = sanitize_title( $type );
+    $classes .= " gfield-type-{$type}";
 
   // Add placeholder classes.
-  $has_placeholder = ( isset( $field['placeholder'] ) and '' !== $field['placeholder'] );
-  if ( isset( $field['inputs'] ) ) {
-    foreach ( $field['inputs'] as $input ) {
-      if ( isset( $input['placeholder'] ) and '' !== $input['placeholder'] ) {
-        $has_placeholder = true;
+    $has_placeholder = ( isset( $field['placeholder'] ) and '' !== $field['placeholder'] );
+    if (isset( $field['inputs'] )) {
+        foreach ($field['inputs'] as $input) {
+            if (isset( $input['placeholder'] ) and '' !== $input['placeholder']) {
+                $has_placeholder = true;
 
-        break;
-      } // if()
-    } // foreach()
-  } // if()
-  $classes .= ( $has_placeholder ) ? ' gfield-placeholder' : '';
+                break;
+            } // if()
+        } // foreach()
+    } // if()
+    $classes .= ( $has_placeholder ) ? ' gfield-placeholder' : '';
 
-  return $classes;
+    return $classes;
 }, 10, 3 );
 
 /**
  * Declare WooCommerce theme support.
  */
-function mdg_woocommerce_support() {
-	add_theme_support( 'woocommerce' );
+function kindling_woocommerce_support()
+{
+    add_theme_support( 'woocommerce' );
 }
-add_action( 'after_setup_theme', 'mdg_woocommerce_support' );
+add_action( 'after_setup_theme', 'kindling_woocommerce_support' );
 
 /**
  * Register image sizes.
  */
-add_action( 'init', function() {
-	Kindling\ImageSizes::register();
+add_action( 'init', function () {
+    Kindling\ImageSizes::register();
 });

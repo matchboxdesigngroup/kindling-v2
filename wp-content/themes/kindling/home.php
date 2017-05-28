@@ -1,6 +1,6 @@
 <?php
 /**
- * Default template.
+ * Post roll template.
  *
  * @package Kindling
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>

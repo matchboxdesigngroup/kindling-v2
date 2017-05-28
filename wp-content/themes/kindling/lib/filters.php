@@ -20,26 +20,52 @@
  *
  * @return  object          The filtered query.
  */
-add_filter( 'pre_get_posts', function( $query ) {
-  global $wp_filter;
+add_filter( 'pre_get_posts', function ($query) {
+    global $wp_filter;
 
-  if ( ! isset( $wp_filter['pre_get_posts'] ) or is_admin() ) {
-    return $query;
-  } // if()
+    if (! isset( $wp_filter['pre_get_posts'] ) or is_admin()) {
+        return $query;
+    } // if()
 
-  $pre_get_posts_filters = $wp_filter['pre_get_posts'];
+    $pre_get_posts_filters = $wp_filter['pre_get_posts'];
 
-  foreach ( $pre_get_posts_filters as $filters_key => $filters ) {
-    foreach ( $filters as $filter_key => $filter ) {
-      $correct_filter = ( strpos( $filter_key, 'hicpo_pre_get_posts' ) !== false );
-      $has_function   = isset( $filter['function'] );
+    foreach ($pre_get_posts_filters as $filters_key => $filters) {
+        foreach ($filters as $filter_key => $filter) {
+            $correct_filter = ( strpos( $filter_key, 'hicpo_pre_get_posts' ) !== false );
+            $has_function   = isset( $filter['function'] );
 
-      if ( $correct_filter and $has_function ) {
-        remove_filter( 'pre_get_posts', $filter['function'], $filters_key );
-      } // if()
+            if ($correct_filter and $has_function) {
+                remove_filter( 'pre_get_posts', $filter['function'], $filters_key );
+            } // if()
+        } // foreach()
     } // foreach()
-  } // foreach()
 
 
-  return $query;
+    return $query;
 }, 0 );
+
+/**
+ * Add <body> classes
+ */
+add_filter('body_class', function ($classes) {
+  // Add page slug if it doesn't exist
+    if (is_single() || is_page() && !is_front_page()) {
+        if (!in_array(basename(get_permalink()), $classes)) {
+            $classes[] = basename(get_permalink());
+        }
+    }
+
+  // Add class if sidebar is active
+    if (kindling_display_sidebar()) {
+        $classes[] = 'sidebar-primary';
+    }
+
+    return $classes;
+});
+
+/**
+ * Clean up the_excerpt()
+ */
+add_filter('excerpt_more', function () {
+    return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'sage') . '</a>';
+});
