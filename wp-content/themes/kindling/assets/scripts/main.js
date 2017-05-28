@@ -1,9 +1,5 @@
-/** global SN_GLOBALS */
 jQuery((function($) {
     var site    = {};
-
-    // Globals defined in scripts.php
-    // ajaxurl = SN_GLOBALS.ajaxurl
 
     /**
      * Initialize FlexSliders here
@@ -13,6 +9,7 @@ jQuery((function($) {
      * @return boolean false
      */
     // site.initFlexslider = function() {
+    //     require('./../../node_modules/flexslider/jquery.flexslider.js');
     //  if (typeof $.fn.flexslider !== 'function' ) {
     //      return;
     //  } // if()
@@ -135,6 +132,8 @@ jQuery((function($) {
      * Window Load
      */
     $(window).load(function() {
+        console.log('test');
         site.initBackToTop();
+        // site.initFlexslider();
     });
 })(jQuery));

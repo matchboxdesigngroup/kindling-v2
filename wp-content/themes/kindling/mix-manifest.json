@@ -3,5 +3,10 @@
   "/dist/main.css": "/dist/main.css",
   "/mix.js": "/mix.js",
   "/dist/main-admin.css": "/dist/main-admin.css",
-  "/dist/customizer.js": "/dist/customizer.js"
+  "/dist/customizer.js": "/dist/customizer.js",
+  "/dist/main.js.map": "/dist/main.js.map",
+  "/mix.js.map": "/mix.js.map",
+  "/dist/main.css.map": "/dist/main.css.map",
+  "/dist/main-admin.css.map": "/dist/main-admin.css.map",
+  "/dist/customizer.js.map": "/dist/customizer.js.map"
 }

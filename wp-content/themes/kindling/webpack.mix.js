@@ -12,6 +12,8 @@ let mix = require('laravel-mix');
  */
 
 mix
+.copy('./node_modules/flexslider/flexslider.css', './assets/styles/vendor/_flexslider.scss')
+.copy('./node_modules/flexslider/fonts', './assets/styles/vendor/fonts')
 .sass('./assets/styles/main.scss', 'dist/')
 .sass('./assets/styles/main-admin.scss', 'dist/')
 .js('./assets/scripts/main.js', 'dist/')

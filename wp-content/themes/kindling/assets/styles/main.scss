@@ -1,15 +1,32 @@
 @import "common/variables";
+
+// ===================================
+// Vendor
+// ===================================
 @import "vendor/bootstrap";
+// @import "vendor/flexslider";
+
+// ===================================
+// Common
+// ===================================
 @import "common/global";
 @import "common/mixins";
 @import "common/functions";
 @import "common/fonts";
+
+// ===================================
+// Components
+// ===================================
 @import "components/buttons";
 @import "components/comments";
 @import "components/forms";
 @import "components/grid";
 @import "components/shortcodes";
 @import "components/wp-classes";
+
+// ===================================
+// Layouts
+// ===================================
 @import "layouts/header";
 @import "layouts/navigation";
 @import "layouts/sidebar";
