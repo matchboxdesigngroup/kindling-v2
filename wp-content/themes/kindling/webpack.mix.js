@@ -12,6 +12,7 @@ let mix = require('laravel-mix');
  */
 
 mix
+.setPublicPath('./dist')
 .copy('./node_modules/flexslider/flexslider.css', './assets/styles/vendor/_flexslider.scss')
 .copyDirectory('./node_modules/flexslider/fonts', './assets/styles/vendor/fonts')
 .sass('./assets/styles/main.scss', 'dist/')
