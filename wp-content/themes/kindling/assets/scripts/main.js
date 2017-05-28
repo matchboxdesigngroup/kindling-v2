@@ -41,31 +41,6 @@ jQuery((function($) {
     }; // site.initFitVids()
 
     /**
-     * Adding selectric jQuery plugin.
-     *
-     * @example http://lcdsantos.github.io/jQuery-Selectric/
-     *
-     * @return  {void}
-     */
-    // site.selectricInit = function() {
-    //  if ( typeof $.fn.selectric !== 'function' ) {
-    //      return;
-    //  } // if()
-
-    //  var selectElem = $('select');
-    //  if ( selectElem.length === 0 ) {
-    //      return;
-    //  } // if()
-
-    //  selectElem.selectric();
-
-    //  if ( $('.selectricWrapper').length === 0 ) {
-    //      selectElem.addClass('selectric-disabled');
-    //      $('form').addClass('selectric-disabled-form');
-    //  } // if()
-    // }; // site.selectricInit()
-
-    /**
      * Scrolls the page to the top of the provided element
      *
      * @param  {object}          elem            The jQuery selector object to scroll to.
