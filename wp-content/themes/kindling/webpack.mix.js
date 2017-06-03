@@ -13,8 +13,11 @@ let mix = require('laravel-mix');
 
 mix
 .setPublicPath('./dist')
-.copy('./node_modules/flexslider/flexslider.css', './assets/styles/vendor/_flexslider.scss')
-.copyDirectory('./node_modules/flexslider/fonts', './assets/styles/vendor/fonts')
+.copy('./node_modules/flexslider/flexslider.css', './assets/styles/vendor/source/_flexslider.scss')
+.copyDirectory('./node_modules/flexslider/fonts', './dist/fonts')
+.copyDirectory('./node_modules/font-awesome/fonts', './dist/fonts')
+.copyDirectory('./node_modules/bootstrap-sass/assets/fonts/bootstrap', './dist/fonts')
+.copyDirectory('./assets/images', './dist/images')
 .sass('./assets/styles/main.scss', 'dist/')
 .sass('./assets/styles/main-admin.scss', 'dist/')
 .js('./assets/scripts/main.js', 'dist/')
@@ -23,7 +26,10 @@ mix
     proxy: 'kindling.dev',
     files: ['./dist/**/*', '**/*.php'],
 })
-.sourceMaps();
+.sourceMaps()
+.options({
+    processCssUrls: false,
+});
 
 // Full API
 // mix.js(src, output);

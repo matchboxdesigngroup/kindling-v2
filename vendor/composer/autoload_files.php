@@ -10,4 +10,5 @@ return array(
     '7ba3c774c30c8399e359b5ff7f3b943e' => $vendorDir . '/tightenco/collect/src/Illuminate/Support/helpers.php',
     'f95af724af424d6ba462e66ae0acba6b' => $baseDir . '/wp-content/plugins/kindling-post-types/libs/loader.php',
     'be11668d66b36566a27b0ec92bcd97a8' => $baseDir . '/wp-content/plugins/kindling-development/libs/loader.php',
+    'ea99fcdd191f7c8226e75515c8298267' => $baseDir . '/wp-content/themes/kindling/libs/loader.php',
 );

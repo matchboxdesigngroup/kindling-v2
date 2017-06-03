@@ -67,7 +67,7 @@ add_filter('body_class', function ($classes) {
  * Clean up the_excerpt()
  */
 add_filter('excerpt_more', function () {
-    return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'sage') . '</a>';
+    return ' &hellip; <a href="' . get_permalink() . '">' . __('Continued', 'kindling') . '</a>';
 });
 
 /**

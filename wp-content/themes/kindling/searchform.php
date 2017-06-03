@@ -1,3 +1,12 @@
+<?php
+/**
+ * Search form template.
+ *
+ * @package Kindling_Theme
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
+ */
+
+?>
 <form role="search" method="get" class="search-form" action="<?php echo esc_url( home_url() ); ?>">
     <label class="search-label">
         <span class="sr-only">Search for:</span>

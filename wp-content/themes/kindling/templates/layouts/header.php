@@ -24,7 +24,7 @@
             </div>
 
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only"><?= __('Toggle navigation', 'sage'); ?></span>
+                <span class="sr-only"><?= __('Toggle navigation', 'kindling'); ?></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>

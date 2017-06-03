@@ -6,4 +6,11 @@
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
-// @todo templates/content/loop.php
+?>
+<div class="content-loop">
+    <?php
+    while (have_posts()) {
+        the_post();
+        the_content();
+    } ?>
+</div>

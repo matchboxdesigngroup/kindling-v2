@@ -17,5 +17,5 @@ add_action('customize_register', function ($wp_customize) {
  * Customizer JS
  */
 add_action('customize_preview_init', function () {
-    wp_enqueue_script('sage/customizer', kindling_asset_path('customizer.js'), ['customize-preview'], null, true);
+    wp_enqueue_script('kindling/customizer', kindling_asset_path('customizer.js'), ['customize-preview'], null, true);
 });

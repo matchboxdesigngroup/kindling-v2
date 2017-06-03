@@ -25,3 +25,5 @@ $copyrightYear = date('Y');
         </nav>
     </div>
 </footer>
+<?php
+get_template_part('templates/partials/back-to-top');

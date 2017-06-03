@@ -1,3 +1,12 @@
+<?php
+/**
+ * Base template wrapper.
+ *
+ * @package Kindling_Theme
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
+ */
+
+?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
     <?php get_template_part('templates/layouts/head'); ?>

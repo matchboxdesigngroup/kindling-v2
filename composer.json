@@ -16,7 +16,8 @@
         },
         "files": [
             "wp-content/plugins/kindling-post-types/libs/loader.php",
-            "wp-content/plugins/kindling-development/libs/loader.php"
+            "wp-content/plugins/kindling-development/libs/loader.php",
+            "wp-content/themes/kindling/libs/loader.php"
         ]
     },
     "autoload-dev": {
