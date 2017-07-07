@@ -1,0 +1,180 @@
+<?php
+/**
+ * Kindling debug/development.
+ *
+ * @package Kindling
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
+ */
+
+/**
+ * Checks the current host against the supplied hosts.
+ *
+ * @param   array $http_hosts  The possible hosts to check against.
+ *
+ * @return  boolean               True if the current host matches any of the supplied hosts, false if not.
+ */
+function mdg_check_hosts($http_hosts = array())
+{
+	$http_host = sanitize_text_field( $_SERVER['HTTP_HOST'] ); // Input var ok.
+
+	// Check the possible HTTP hosts against the current HTTP host.
+	if ( in_array( $http_host, $http_hosts ) ) {
+		return true;
+	} // if()
+
+	// Check the possible HTTP hosts against the current HTTP host.
+	foreach ( $http_hosts as $host ) {
+		if ( false !== strpos( $http_host, $host ) ) {
+			return true;
+		} // if()
+	} // foreach
+
+	return false;
+} // mdg_check_hosts()
+
+/**
+ * Checks if the current HTTP host is localhost.
+ * Default possible HTTP hosts http://localhost, 127.0.0.1, 10.0.0.2, http://*.dev.
+ *
+ * <code>
+ * if ( mdg_is_localhost() ) {
+ *  // Do something localhost specific...
+ * } // if()
+ * </code
+ *
+ * @since   Kindling 0.1.0
+ *
+ * @return  boolean  If the current HTTP host is localhost.
+ */
+function mdg_is_localhost() {
+	// Default possible HTTP hosts URLs/IP addresses.
+	$http_hosts = array(
+		'localhost',
+		'127.0.0.1',
+		'10.0.2.2',
+		'.dev',
+	);
+
+	/**
+	* Allows for filtering of the possible HTTP hosts.
+	* Accepts name/IP like localhost/127.0.0.1 or a domain such as .dev.
+	*
+	* @param  hosts  The possible HTTP hosts to check against.
+	*/
+	$http_hosts = apply_filters( 'mdg_mdg_is_localhost_http_hosts', $http_hosts );
+
+	return mdg_check_hosts( $http_hosts );
+} // mdg_is_localhost()
+
+/**
+ * Checks if the current host is a staging site.
+ *
+ * @since   Kindling 0.1.0
+ *
+ * @return  boolean  If the current host is a staging site.
+ */
+function mdg_is_staging() {
+	$http_hosts = array(
+		'.staging.',
+		'dev.',
+	);
+
+	/**
+	* Allows for filtering of the possible HTTP hosts.
+	* Accepts name/IP like localhost/127.0.0.1 or a domain such as .dev.
+	*
+	* @param  hosts  The possible HTTP hosts to check against.
+	*/
+	$http_hosts = apply_filters( 'mdg_mdg_is_staging_http_hosts', $http_hosts );
+
+	return mdg_check_hosts( $http_hosts );
+} // mdg_is_staging()
+
+/**
+ * Gets the environment type.
+ *
+ * @since   Kindling 1.0.2
+ *
+ * @return string The environment type.
+ */
+function mdg_get_environment_type() {
+	if ( mdg_is_localhost() ) {
+		return 'local';
+	}
+
+	if ( mdg_is_staging() ) {
+		return 'staging';
+	}
+
+	return 'production';
+}
+
+/**
+ * Checks if the current host is a production site.
+ *
+ * @since   Kindling 1.0.2
+ *
+ * @return  boolean  If the current host is a production site.
+ */
+function mdg_is_production() {
+	return ( 'production' === mdg_get_environment_type() );
+}
+
+/**
+ * Enables Jetpack devleopment mode.
+ *
+ * @param boolean $enabled If Jetpack is currently enabled.
+ */
+function mdg_enable_jetpack_development_mode( $enabled ) {
+	if ( mdg_is_localhost() ) {
+		return true;
+	} // if()
+
+	return $enabled;
+} // mdg_enable_jetpack_development_mode()
+add_filter( 'jetpack_development_mode', 'mdg_enable_jetpack_development_mode' );
+
+if ( ! function_exists( 'pp' ) ) {
+	/**
+	 * Pretty Print Debug Function
+	 *
+	 * <code>
+	 * pp( $something_to_pretty_print );
+	 * </code>
+	 *
+	 * @todo  Add localhost check.
+	 *
+	 * @param mixed $value Any value.
+	 */
+	function pp( $value ) {
+		if ( !mdg_is_localhost() ) {
+			return;
+		}
+
+		echo '<pre>';
+		if ( is_string( $value) or is_bool( $value ) or is_null( $value ) ) {
+			var_dump( $value );
+		} else {
+			print_r( $value );
+		} // if/else()
+		echo '</pre>';
+	} // pp()
+} // if()
+
+if ( ! function_exists( 'dd' ) ) {
+	/**
+	 * Pretty Print Debug and Die
+	 *
+	 * <code>
+	 * dd( $something_to_pretty_print );
+	 * </code>
+	 *
+	 * @todo  Add localhost check.
+	 *
+	 * @param mixed $value Any value.
+	 */
+	function dd( $value ) {
+		pp( $value );
+		die();
+	} // dd()
+} // if()
