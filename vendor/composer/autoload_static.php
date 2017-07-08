@@ -7,8 +7,9 @@ namespace Composer\Autoload;
 class ComposerStaticInited0baa2f771a1f802346917bbe40538a
 {
     public static $files = array (
+        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
-        '7ba3c774c30c8399e359b5ff7f3b943e' => __DIR__ . '/..' . '/tightenco/collect/src/Illuminate/Support/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -16,15 +17,27 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Translation\\' => 30,
+            'Symfony\\Component\\Finder\\' => 25,
+            'Symfony\\Component\\Debug\\' => 24,
+        ),
+        'P' => 
+        array (
+            'Psr\\Log\\' => 8,
         ),
         'K' => 
         array (
             'Kindling\\Theme\\' => 15,
             'Kindling\\PostTypes\\' => 19,
+            'Kindling\\Blade\\' => 15,
         ),
         'I' => 
         array (
-            'Illuminate\\' => 11,
+            'Illuminate\\View\\' => 16,
+            'Illuminate\\Support\\' => 19,
+            'Illuminate\\Filesystem\\' => 22,
+            'Illuminate\\Events\\' => 18,
+            'Illuminate\\Contracts\\' => 21,
+            'Illuminate\\Container\\' => 21,
         ),
         'F' => 
         array (
@@ -45,17 +58,53 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
         ),
+        'Symfony\\Component\\Finder\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/finder',
+        ),
+        'Symfony\\Component\\Debug\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/debug',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'Kindling\\Theme\\' => 
         array (
             0 => __DIR__ . '/../..' . '/wp-content/themes/kindling/src',
         ),
         'Kindling\\PostTypes\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/wp-content/plugins/kindling-post-types/src',
+            0 => __DIR__ . '/../..' . '/wp-content/mu-plugins/kindling-post-types/src',
         ),
-        'Illuminate\\' => 
+        'Kindling\\Blade\\' => 
         array (
-            0 => __DIR__ . '/..' . '/tightenco/collect/src/Illuminate',
+            0 => __DIR__ . '/../..' . '/wp-content/mu-plugins/kindling-blade/src',
+        ),
+        'Illuminate\\View\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/view',
+        ),
+        'Illuminate\\Support\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/support',
+        ),
+        'Illuminate\\Filesystem\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/filesystem',
+        ),
+        'Illuminate\\Events\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/events',
+        ),
+        'Illuminate\\Contracts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/contracts',
+        ),
+        'Illuminate\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/container',
         ),
         'Faker\\' => 
         array (
@@ -67,11 +116,22 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
         ),
     );
 
+    public static $prefixesPsr0 = array (
+        'D' => 
+        array (
+            'Doctrine\\Common\\Inflector\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
+            ),
+        ),
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInited0baa2f771a1f802346917bbe40538a::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInited0baa2f771a1f802346917bbe40538a::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInited0baa2f771a1f802346917bbe40538a::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

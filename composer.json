@@ -5,13 +5,17 @@
     "license": "GPL-3.0",
     "type": "project",
     "require": {
-        "tightenco/collect": "^5.4",
+        "php": ">=5.6.4",
         "nesbot/carbon": "^1.22",
-        "fzaninotto/faker": "^1.6"
+        "fzaninotto/faker": "^1.6",
+        "illuminate/support": "5.4.*",
+        "illuminate/view": "~5.4.0",
+        "illuminate/config": "~5.4.0"
     },
     "autoload": {
         "psr-4": {
-            "Kindling\\PostTypes\\": "wp-content/plugins/kindling-post-types/src",
+            "Kindling\\PostTypes\\": "wp-content/mu-plugins/kindling-post-types/src",
+            "Kindling\\Blade\\": "wp-content/mu-plugins/kindling-blade/src",
             "Kindling\\Theme\\": "wp-content/themes/kindling/src"
         }
     },
