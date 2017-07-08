@@ -104,6 +104,8 @@ npm-debug.log
 /wp-content/db.php
 /wp-content/plugins/*
 !/wp-content/plugins/kindling-*
+/wp-content/mu-plugins/*
+!/wp-content/mu-plugins/kindling-*
 /.htaccess
 /.idea
 /.installedExtras

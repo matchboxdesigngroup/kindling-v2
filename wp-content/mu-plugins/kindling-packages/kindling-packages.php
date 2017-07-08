@@ -9,6 +9,6 @@ Version: 1.0.0
 License: GPL2
 */
 
-require __DIR__ . '/../../../vendor/autoload.php';
+require_once __DIR__ . '/../../../vendor/autoload.php';
 
 do_action('kindling_packages_ready');
