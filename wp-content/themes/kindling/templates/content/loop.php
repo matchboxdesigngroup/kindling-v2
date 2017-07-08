@@ -7,7 +7,7 @@
  */
 
 ?>
-<div class="content-loop">
+<div class="content-loop fitvid">
     <?php
     while (have_posts()) {
         the_post();
