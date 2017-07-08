@@ -13,12 +13,7 @@
         "psr-4": {
             "Kindling\\PostTypes\\": "wp-content/plugins/kindling-post-types/src",
             "Kindling\\Theme\\": "wp-content/themes/kindling/src"
-        },
-        "files": [
-            "wp-content/plugins/kindling-post-types/libs/loader.php",
-            "wp-content/plugins/kindling-development/libs/loader.php",
-            "wp-content/themes/kindling/libs/loader.php"
-        ]
+        }
     },
     "autoload-dev": {
         "Kindling\\Theme\\Tests\\": "wp-content/themes/kindling/tests"

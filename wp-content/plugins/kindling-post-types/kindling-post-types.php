@@ -9,7 +9,5 @@ Version: 1.0.0
 License: GPL2
 */
 
-define('KPT_VERSION', '1.0.0');
-define('KPT_PLUGIN_DIR_PATH', rtrim(plugin_dir_path(__FILE__), '/'));
-define('KPT_PLUGIN_FILE', __FILE__);
-define('KPT_PLUGIN_URL', plugins_url(basename(plugin_dir_path(__FILE__))));
+require __dir__ . "/libs/functions.php";
+require __dir__ . "/libs/actions.php";
