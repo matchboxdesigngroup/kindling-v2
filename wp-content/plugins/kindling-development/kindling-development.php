@@ -9,7 +9,7 @@ Version: 1.0.0
 License: GPL2
 */
 
-require __dir__ . "/libs/constants.php";
-require __dir__ . "/libs/functions.php";
-require __dir__ . "/libs/actions.php";
-require __dir__ . "/libs/filters.php";
+require_once __dir__ . "/libs/constants.php";
+require_once __dir__ . "/libs/functions.php";
+require_once __dir__ . "/libs/actions.php";
+require_once __dir__ . "/libs/filters.php";
