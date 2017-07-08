@@ -2,25 +2,12 @@
 /**
  * Theme includes
  *
- * @link https://github.com/roots/sage/pull/1042
- * @package WordPress
+ * @package Kindling_Theme
+ * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
-$themeIncludes = [
-    'setup.php', // Theme setup.
-    'customizer.php', // Theme customizer.
-    'shortcodes.php', // Shortcodes.
-    'actions.php', // Theme Actions.
-    'filters.php', // Theme Filters.
-];
-
-
-foreach ($themeIncludes as $file) {
-    $filepath = __dir__ . "/{$file}";
-    if (! file_exists($filepath)) {
-        trigger_error(sprintf(__('Error locating %s for inclusion', 'kindling'), $file), E_USER_ERROR);
-    }
-
-    require_once $filepath;
-}
-unset($file, $filepath);
+require_once 'setup.php'; // Theme setup.
+require_once 'customizer.php'; // Theme customizer.
+require_once 'shortcodes.php'; // Shortcodes.
+require_once 'actions.php'; // Theme Actions.
+require_once 'filters.php'; // Theme Filters.
