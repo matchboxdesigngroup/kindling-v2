@@ -1,4 +1,5 @@
 // ==================================================
+// Site Footer
 // ==================================================
 .site-footer {
 	background-color: $footer-bg;
@@ -10,3 +11,47 @@
 		color: $color2;
 	} // a
 } // .site-footer
+
+.footer-inner {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: center;
+	flex-direction: column;
+
+	@include bp-screen-sm {
+		flex-direction: row;
+	} // @include bp-screen-sm
+} // .footer-inner
+
+// ==================================================
+// Footer Copyright
+// ==================================================
+.footer-copyright {
+	flex: 1;
+	margin-bottom: 15px;
+
+	@include bp-screen-sm {
+		margin-bottom: 0;
+	} // @include bp-screen-sm
+} // .footer-copyright
+
+// ==================================================
+// Footer Navigation
+// ==================================================
+.footer-navigation-menu {
+	margin-bottom: 0;
+
+	li {
+		float: left;
+		padding-right: 10px;
+		margin-right: 10px;
+		border-right: 1px solid $color2;
+
+		&:last-child {
+			padding-right: 0;
+			margin-right: 0;
+			border-right: 0;
+		} // &:last-child
+	} // li
+} // .footer-navigation-menu

@@ -10,8 +10,8 @@ $copyrightName = get_bloginfo('name');
 $copyrightYear = date('Y');
 ?>
 <footer class="content-info site-footer">
-    <div class="container">
-        <span class="copyright">&copy; <?php esc_attr_e("{$copyrightYear} {$copyrightName}"); ?></span>
+    <div class="container footer-inner">
+        <span class="footer-copyright">&copy; <?php esc_attr_e("{$copyrightYear} {$copyrightName}"); ?></span>
 
         <nav class="footer-navigation-menu">
             <?php
