@@ -7,11 +7,13 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
     'Symfony\\Component\\Translation\\' => array($vendorDir . '/symfony/translation'),
     'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
     'Symfony\\Component\\Debug\\' => array($vendorDir . '/symfony/debug'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Kindling\\Theme\\' => array($baseDir . '/wp-content/themes/kindling/src'),
+    'Kindling\\Support\\' => array($baseDir . '/wp-content/mu-plugins/kindling-support/src'),
     'Kindling\\PostTypes\\' => array($baseDir . '/wp-content/mu-plugins/kindling-post-types/src'),
     'Kindling\\Blade\\' => array($baseDir . '/wp-content/mu-plugins/kindling-blade/src'),
     'Illuminate\\View\\' => array($vendorDir . '/illuminate/view'),
@@ -20,6 +22,7 @@ return array(
     'Illuminate\\Events\\' => array($vendorDir . '/illuminate/events'),
     'Illuminate\\Contracts\\' => array($vendorDir . '/illuminate/contracts'),
     'Illuminate\\Container\\' => array($vendorDir . '/illuminate/container'),
+    'Illuminate\\Config\\' => array($vendorDir . '/illuminate/config'),
     'Faker\\' => array($vendorDir . '/fzaninotto/faker/src/Faker'),
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
 );

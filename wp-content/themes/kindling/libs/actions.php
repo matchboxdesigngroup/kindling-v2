@@ -59,3 +59,19 @@ add_action('after_setup_theme', function () {
 add_action('init', function () {
     Kindling\Theme\ImageSizes::register();
 });
+
+/**
+ * Shared view data.
+ */
+add_action('wp', function () {
+    global $wp_query;
+
+    $posts = $wp_query->get_posts();
+    $post = current($posts);
+    $blade = kindling('blade');
+
+    $blade->share('wp_query', $wp_query);
+    $blade->share('posts', $posts);
+    $blade->share('post', (false === $post) ? null : $post);
+    $blade->share('page_title', kindling_page_title());
+});

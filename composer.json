@@ -9,11 +9,13 @@
         "nesbot/carbon": "^1.22",
         "fzaninotto/faker": "^1.6",
         "illuminate/support": "5.4.*",
-        "illuminate/view": "~5.4.0",
-        "illuminate/config": "~5.4.0"
+        "illuminate/view": "5.4.*",
+        "illuminate/config": "5.4.*",
+        "symfony/var-dumper": "^3.3"
     },
     "autoload": {
         "psr-4": {
+            "Kindling\\Support\\": "wp-content/mu-plugins/kindling-support/src",
             "Kindling\\PostTypes\\": "wp-content/mu-plugins/kindling-post-types/src",
             "Kindling\\Blade\\": "wp-content/mu-plugins/kindling-blade/src",
             "Kindling\\Theme\\": "wp-content/themes/kindling/src"

@@ -10,12 +10,14 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Component\\VarDumper\\' => 28,
             'Symfony\\Component\\Translation\\' => 30,
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\Debug\\' => 24,
@@ -27,6 +29,7 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
         'K' => 
         array (
             'Kindling\\Theme\\' => 15,
+            'Kindling\\Support\\' => 17,
             'Kindling\\PostTypes\\' => 19,
             'Kindling\\Blade\\' => 15,
         ),
@@ -38,6 +41,7 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
             'Illuminate\\Events\\' => 18,
             'Illuminate\\Contracts\\' => 21,
             'Illuminate\\Container\\' => 21,
+            'Illuminate\\Config\\' => 18,
         ),
         'F' => 
         array (
@@ -53,6 +57,10 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Component\\VarDumper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/var-dumper',
         ),
         'Symfony\\Component\\Translation\\' => 
         array (
@@ -73,6 +81,10 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
         'Kindling\\Theme\\' => 
         array (
             0 => __DIR__ . '/../..' . '/wp-content/themes/kindling/src',
+        ),
+        'Kindling\\Support\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/wp-content/mu-plugins/kindling-support/src',
         ),
         'Kindling\\PostTypes\\' => 
         array (
@@ -105,6 +117,10 @@ class ComposerStaticInited0baa2f771a1f802346917bbe40538a
         'Illuminate\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/illuminate/container',
+        ),
+        'Illuminate\\Config\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/config',
         ),
         'Faker\\' => 
         array (
