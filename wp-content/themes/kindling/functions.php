@@ -6,7 +6,7 @@
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
-require_once 'libs/functions.php'; // Theme Functions.
+require_once 'libs/helpers.php'; // Theme Functions.
 require_once 'libs/setup.php'; // Theme setup.
 require_once 'libs/customizer.php'; // Theme customizer.
 require_once 'libs/shortcodes.php'; // Shortcodes.
