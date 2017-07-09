@@ -13,15 +13,16 @@ let mix = require('laravel-mix');
 
 mix
 .setPublicPath('./dist')
-.copy('./node_modules/flexslider/flexslider.css', './assets/styles/vendor/source/_flexslider.scss')
+.copyDirectory('./resources/assets/images', './dist/images')
+.copy('./node_modules/flexslider/flexslider.css', './resources/assets/styles/vendor/source/_flexslider.scss')
 .copyDirectory('./node_modules/flexslider/fonts', './dist/fonts')
 .copyDirectory('./node_modules/font-awesome/fonts', './dist/fonts')
 .copyDirectory('./node_modules/bootstrap-sass/assets/fonts/bootstrap', './dist/fonts')
-.copyDirectory('./assets/images', './dist/images')
-.sass('./assets/styles/main.scss', 'dist/')
-.sass('./assets/styles/main-admin.scss', 'dist/')
-.js('./assets/scripts/main.js', 'dist/')
-.js('./assets/scripts/customizer.js', 'dist/')
+.copyDirectory('./resources/assets/images', './dist/images')
+.sass('./resources/assets/styles/main.scss', 'dist/')
+.sass('./resources/assets/styles/main-admin.scss', 'dist/')
+.js('./resources/assets/scripts/main.js', 'dist/')
+.js('./resources/assets/scripts/customizer.js', 'dist/')
 .browserSync({
     proxy: 'kindling.dev',
     files: ['./dist/**/*', '**/*.php'],

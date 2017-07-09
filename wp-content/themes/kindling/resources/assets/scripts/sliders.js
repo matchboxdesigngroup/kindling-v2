@@ -1,4 +1,4 @@
-require('./../../node_modules/flexslider/jquery.flexslider.js');
+require('./../../../node_modules/flexslider/jquery.flexslider.js');
 
 let sliders = {};
 let $ = window.jQuery;

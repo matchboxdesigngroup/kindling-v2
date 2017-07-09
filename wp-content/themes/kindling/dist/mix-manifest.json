@@ -1,7 +1,12 @@
 {
   "/main.js": "/main.js",
+  "/main.js.map": "/main.js.map",
   "/mix.js": "/mix.js",
   "/main.css": "/main.css",
   "/main-admin.css": "/main-admin.css",
-  "/customizer.js": "/customizer.js"
+  "/mix.js.map": "/mix.js.map",
+  "/main.css.map": "/main.css.map",
+  "/main-admin.css.map": "/main-admin.css.map",
+  "/customizer.js": "/customizer.js",
+  "/customizer.js.map": "/customizer.js.map"
 }

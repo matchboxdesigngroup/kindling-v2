@@ -15,7 +15,7 @@
                 href="<?php echo esc_url(home_url('/')); ?>"
                 >
                     <img
-                    src="<?php echo esc_url(get_template_directory_uri()); ?>/assets/images/logo.png    "
+                    src="<?php echo esc_url(get_template_directory_uri()); ?>/dist/images/logo.png"
                     alt="<?php bloginfo('name'); ?>"
                     width="150"
                     height="60"
