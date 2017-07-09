@@ -71,13 +71,6 @@ add_filter('excerpt_more', function () {
 });
 
 /**
- * Initialize theme wrapper.
- */
-add_filter('template_include', function ($main) {
-    return Kindling\Theme\ThemeWrapper::wrap($main);
-}, 109);
-
-/**
  * Allow SVG Uploads
  */
 add_filter('upload_mimes', function ($mimes) {
