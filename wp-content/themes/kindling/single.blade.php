@@ -10,8 +10,6 @@
 @extends('layouts.base')
 
 @section('content')
-<?php
-get_template_part('templates/partials/page-header');
-get_template_part('templates/content/loop');
-?>
+@include('partials.layouts.page-header')
+@include('loop')
 @endsection

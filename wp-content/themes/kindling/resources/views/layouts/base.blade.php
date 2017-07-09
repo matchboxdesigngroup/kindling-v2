@@ -1,4 +1,4 @@
-<?php
+@php
 /**
  * Base template wrapper.
  *
@@ -6,34 +6,43 @@
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
-?>
+@endphp
 <!doctype html>
-<html <?php language_attributes(); ?>>
-    <?php get_template_part('templates/layouts/head'); ?>
-    <body <?php body_class(); ?>>
+<html {{ language_attributes() }}>
+    @include('partials.layouts.head')
+    <body {{ body_class() }}>
         <div class="body-bg">
-            <?php
-            get_template_part('templates/partials/outdated');
+            @include('templates.partials.outdated')
+
+            @php
             do_action('get_header');
-            get_template_part('templates/layouts/header');
-            ?>
+            @endphp
+
+            @include('partials.layouts.header')
 
             <div class="site-wrap content-bg" role="document">
                 <div class="container">
                     <div class="content row">
                         <main class="main">
-                        @yield('content')
-                        </main><!-- /.main -->
-                        <!-- @yield('sidebar') -->
-                    </div><!-- /.content -->
-                </div>
-            </div><!-- /.site-wrap -->
+                            @yield('content')
+                        </main> {{-- /.main --}}
 
-            <?php
+                        @if (kindling_display_sidebar())
+                            @yield('sidebar')
+                        @endif
+                    </div> {{-- /.content --}}
+                </div>
+            </div> {{-- /.site-wrap --}}
+
+            @php
             do_action('get_footer');
-            get_template_part('templates/layouts/footer');
+            @endphp
+
+            @include('partials.layouts.footer')
+
+            @php
             wp_footer();
-            ?>
+            @endphp
         </div>
     </body>
 </html>

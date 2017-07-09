@@ -11,6 +11,6 @@
 @section('content')
 @include('partials.page-header')
 <?php
-get_template_part('templates/content/news');
+get_template_part('templates/news');
 ?>
 @endsection

@@ -6,4 +6,4 @@
  * @author  Matchbox Design Group <info@matchboxdesigngroup.com>
  */
 
-// @todo templates/news.php
+// @todo templates/partials/news.php
