@@ -1,3 +1,8 @@
 body#tinymce {
   margin: 12px !important;
 }
+body#tinymce,
+body#tinymce .body-bg {
+	height: auto;
+}
+// .body-bg, body, html
