@@ -4,19 +4,21 @@
  * User: djacobsmeyer
  * Date: 7/7/17
  * Time: 2:57 PM
+ *
+ * attr: link: string, target: string, class: string, label: string
  */
 
 
-if (!$buttonLabel || !$buttonLink) {
+if (!$label || !$link) {
     return;
 }
 
-$targetBlank = isset($targetBlank) ? (bool) $targetBlank : false;
+$target = isset($target) ? (bool) $targetBlank : false;
 $class = isset($class) ? "{$class} module-btn btn" : 'module-btn btn';
 ?>
-<a
-    href="<?php echo esc_url($buttonLink); ?>"
-    target="<?php esc_attr_e(swic_link_target($targetBlank)); ?>"
+<button
+    href="<?php echo esc_url($link); ?>"
+    target="<?php esc_attr_e($target); ?>"
     class="<?php esc_attr_e($class); ?>">
-    <?php esc_attr_e($buttonLabel); ?>
-</a>
+    <?php esc_attr_e($label); ?>
+</button>

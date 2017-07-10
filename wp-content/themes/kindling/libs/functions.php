@@ -162,3 +162,13 @@ function kindling_sidebar_path()
 {
     return new Kindling\Theme\ThemeWrapper('templates/layouts/sidebar.php');
 }
+
+function view($path, $data = []) {
+    extract($data);
+
+    $path = ltrim($path, '/');
+    $path = rtrim($path, '.php');
+
+    //var_dump(file_exists(get_template_directory() . "/templates/{$path}.php"));
+    include get_template_directory() . "/templates/{$path}.php";
+}
